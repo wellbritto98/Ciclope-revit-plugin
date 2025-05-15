@@ -1,0 +1,246 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\revitapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\revitapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\commands\\multithreadcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\commands\\multithreadcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|c:\\users\\zearq\\onedrive\\documentos\\projetos\\particular\\revit-wpf-template\\revit template\\core\\services\\revitdocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\core\\services\\revitdocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\commands\\singlethreadcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\commands\\singlethreadcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\core\\services\\irevitdocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\core\\services\\irevitdocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\infrastructure\\vieweventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\infrastructure\\vieweventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\infrastructure\\stringparametereventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\infrastructure\\stringparametereventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\infrastructure\\reviteventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\infrastructure\\reviteventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\viewmodels\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\viewmodels\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\utils\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\utils\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StringParameterEventHandler.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Infrastructure\\StringParameterEventHandler.cs",
+              "RelativeDocumentMoniker": "Revit Template\\Infrastructure\\StringParameterEventHandler.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Infrastructure\\StringParameterEventHandler.cs",
+              "RelativeToolTip": "Revit Template\\Infrastructure\\StringParameterEventHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:58:28.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ViewEventHandler.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Infrastructure\\ViewEventHandler.cs",
+              "RelativeDocumentMoniker": "Revit Template\\Infrastructure\\ViewEventHandler.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Infrastructure\\ViewEventHandler.cs",
+              "RelativeToolTip": "Revit Template\\Infrastructure\\ViewEventHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:58:26.378Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IRevitDocumentService.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Core\\Services\\IRevitDocumentService.cs",
+              "RelativeDocumentMoniker": "Revit Template\\Core\\Services\\IRevitDocumentService.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Core\\Services\\IRevitDocumentService.cs",
+              "RelativeToolTip": "Revit Template\\Core\\Services\\IRevitDocumentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:58:21.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RevitDocumentService.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Core\\Services\\RevitDocumentService.cs",
+              "RelativeDocumentMoniker": "Revit Template\\Core\\Services\\RevitDocumentService.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Core\\Services\\RevitDocumentService.cs",
+              "RelativeToolTip": "Revit Template\\Core\\Services\\RevitDocumentService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowBgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:58:23.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MultiThreadCommand.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Commands\\MultiThreadCommand.cs",
+              "RelativeDocumentMoniker": "Revit Template\\Commands\\MultiThreadCommand.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Commands\\MultiThreadCommand.cs",
+              "RelativeToolTip": "Revit Template\\Commands\\MultiThreadCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:58:17.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SingleThreadCommand.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Commands\\SingleThreadCommand.cs",
+              "RelativeDocumentMoniker": "Revit Template\\Commands\\SingleThreadCommand.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Commands\\SingleThreadCommand.cs",
+              "RelativeToolTip": "Revit Template\\Commands\\SingleThreadCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:58:24.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RevitApp.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\RevitApp.cs",
+              "RelativeDocumentMoniker": "Revit Template\\RevitApp.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\RevitApp.cs",
+              "RelativeToolTip": "Revit Template\\RevitApp.cs",
+              "ViewState": "AgIAAAMBAAAAAAAAAAAlwBUBAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:57:33.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RevitEventHandler.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Infrastructure\\RevitEventHandler.cs",
+              "RelativeDocumentMoniker": "Revit Template\\Infrastructure\\RevitEventHandler.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Infrastructure\\RevitEventHandler.cs",
+              "RelativeToolTip": "Revit Template\\Infrastructure\\RevitEventHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:58:20.343Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Revit Template\\UI\\Views\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Revit Template\\UI\\Views\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:57:22.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Revit Template\\UI\\Views\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "Revit Template\\UI\\Views\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-15T19:01:33.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ViewModelBase.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\ViewModelBase.cs",
+              "RelativeDocumentMoniker": "Revit Template\\UI\\ViewModels\\ViewModelBase.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\ViewModelBase.cs",
+              "RelativeToolTip": "Revit Template\\UI\\ViewModels\\ViewModelBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T19:01:29.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RelayCommand.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\RelayCommand.cs",
+              "RelativeDocumentMoniker": "Revit Template\\UI\\ViewModels\\RelayCommand.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\RelayCommand.cs",
+              "RelativeToolTip": "Revit Template\\UI\\ViewModels\\RelayCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T19:01:28.807Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Utils\\Logger.cs",
+              "RelativeDocumentMoniker": "Revit Template\\Utils\\Logger.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Utils\\Logger.cs",
+              "RelativeToolTip": "Revit Template\\Utils\\Logger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T19:01:21.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MainWindowViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\MainWindowViewModel.cs",
+              "RelativeDocumentMoniker": "Revit Template\\UI\\ViewModels\\MainWindowViewModel.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\MainWindowViewModel.cs",
+              "RelativeToolTip": "Revit Template\\UI\\ViewModels\\MainWindowViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T18:58:29.395Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

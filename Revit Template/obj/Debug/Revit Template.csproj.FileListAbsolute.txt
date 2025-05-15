@@ -1,0 +1,15 @@
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\License.txt
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.addin
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.xml
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.pdb
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.AssemblyReference.cache
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\MainWindow.baml
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\MainWindow.g.cs
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate_MarkupCompile.cache
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.g.resources
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.Properties.Resources.resources
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.GenerateResource.cache
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.CoreCompileInputs.cache
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.pdb

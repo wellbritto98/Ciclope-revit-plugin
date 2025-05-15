@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RevitTemplate</name>
+    </assembly>
+    <members>
+        <member name="T:RevitTemplate.Core.Services.IRevitDocumentService">
+            <summary>
+            Service interface for Revit document operations.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetCurrentDocument">
+            <summary>
+            Gets the current Revit document.
+            </summary>
+            <returns>The current Revit document.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetDocumentInfo">
+            <summary>
+            Gets information about the current document.
+            </summary>
+            <returns>A string containing document information.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetSheetsAsync">
+            <summary>
+            Gets all sheets in the document.
+            </summary>
+            <returns>A list of ViewSheet objects.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.RenameSheets(System.String)">
+            <summary>
+            Renames all sheets in the document.
+            </summary>
+            <param name="namePrefix">The prefix to use for sheet names.</param>
+            <returns>True if the operation was successful, false otherwise.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetWallInfoAsync">
+            <summary>
+            Gets information about walls in the document.
+            </summary>
+            <returns>A string containing wall information.</returns>
+        </member>
+        <member name="T:RevitTemplate.Core.Services.RevitDocumentService">
+            <summary>
+            Implementation of the IRevitDocumentService interface.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.#ctor(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Initializes a new instance of the RevitDocumentService class.
+            </summary>
+            <param name="uiApplication">The Revit UI application.</param>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetCurrentDocument">
+            <summary>
+            Gets the current Revit document.
+            </summary>
+            <returns>The current Revit document.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetDocumentInfo">
+            <summary>
+            Gets information about the current document.
+            </summary>
+            <returns>A string containing document information.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetSheetsAsync">
+            <summary>
+            Gets all sheets in the document asynchronously.
+            </summary>
+            <returns>A list of ViewSheet objects.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.RenameSheets(System.String)">
+            <summary>
+            Renames all sheets in the document.
+            </summary>
+            <param name="namePrefix">The prefix to use for sheet names.</param>
+            <returns>True if the operation was successful, false otherwise.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetWallInfoAsync">
+            <summary>
+            Gets information about walls in the document asynchronously.
+            </summary>
+            <returns>A string containing wall information.</returns>
+        </member>
+        <member name="T:RevitTemplate.Infrastructure.RevitEventHandler`1">
+            <summary>
+            Generic class for handling Revit external events.
+            </summary>
+            <typeparam name="T">The type of argument to pass to the event handler.</typeparam>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.#ctor">
+            <summary>
+            Initializes a new instance of the RevitEventHandler class.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.GetName">
+            <summary>
+            Gets the name of the event handler.
+            </summary>
+            <returns>The name of the event handler.</returns>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Execute(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Executes the event handler.
+            </summary>
+            <param name="app">The Revit UI application.</param>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Raise(`0)">
+            <summary>
+            Raises the external event with the specified parameter.
+            </summary>
+            <param name="parameter">The parameter to pass to the event handler.</param>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Execute(Autodesk.Revit.UI.UIApplication,`0)">
+            <summary>
+            Executes the event handler with the specified parameter.
+            </summary>
+            <param name="app">The Revit UI application.</param>
+            <param name="parameter">The parameter passed to the event handler.</param>
+        </member>
+        <member name="T:RevitTemplate.Infrastructure.StringParameterEventHandler">
+            <summary>
+            Event handler for operations that require a string parameter.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.StringParameterEventHandler.Execute(Autodesk.Revit.UI.UIApplication,System.String)">
+            <summary>
+            Executes the event handler with the specified string parameter.
+            </summary>
+            <param name="app">The Revit UI application.</param>
+            <param name="parameter">The string parameter passed to the event handler.</param>
+        </member>
+        <member name="T:RevitTemplate.Infrastructure.ViewEventHandler">
+            <summary>
+            Event handler for operations that require a View parameter.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.ViewEventHandler.#ctor(RevitTemplate.Core.Services.IRevitDocumentService)">
+            <summary>
+            Initializes a new instance of the ViewEventHandler class.
+            </summary>
+            <param name="documentService">The document service.</param>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.ViewEventHandler.Execute(Autodesk.Revit.UI.UIApplication,RevitTemplate.UI.Views.MainWindow)">
+            <summary>
+            Executes the event handler with the specified View parameter.
+            </summary>
+            <param name="app">The Revit UI application.</param>
+            <param name="window">The main window passed to the event handler.</param>
+        </member>
+        <member name="T:RevitTemplate.UI.ViewModels.ViewModelBase">
+            <summary>
+            Base class for all ViewModels in the application.
+            Implements INotifyPropertyChanged for UI binding.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.ViewModels.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            Notifies UI that a property has changed.
+            </summary>
+            <param name="propertyName">Name of the property that changed.</param>
+        </member>
+        <member name="M:RevitTemplate.UI.ViewModels.ViewModelBase.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+            Sets a property value and raises the PropertyChanged event if the value has changed.
+            </summary>
+            <typeparam name="T">Type of the property.</typeparam>
+            <param name="field">Reference to the backing field.</param>
+            <param name="value">New value for the property.</param>
+            <param name="propertyName">Name of the property.</param>
+            <returns>True if the value was changed, false otherwise.</returns>
+        </member>
+        <member name="T:RevitTemplate.UI.ViewModels.RelayCommand">
+            <summary>
+            A command implementation that relays its functionality to the provided delegates.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.ViewModels.RelayCommand.#ctor(System.Action{System.Object})">
+            <summary>
+            Creates a new command that can always execute.
+            </summary>
+            <param name="execute">The execution logic.</param>
+        </member>
+        <member name="M:RevitTemplate.UI.ViewModels.RelayCommand.#ctor(System.Action{System.Object},System.Predicate{System.Object})">
+            <summary>
+            Creates a new command.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+        </member>
+        <member name="M:RevitTemplate.UI.ViewModels.RelayCommand.CanExecute(System.Object)">
+            <summary>
+            Determines whether this command can execute in its current state.
+            </summary>
+            <param name="parameter">Data used by the command. If the command does not require data, this parameter can be set to null.</param>
+            <returns>True if this command can be executed; otherwise, false.</returns>
+        </member>
+        <member name="E:RevitTemplate.UI.ViewModels.RelayCommand.CanExecuteChanged">
+            <summary>
+            Occurs when changes occur that affect whether or not the command should execute.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.ViewModels.RelayCommand.Execute(System.Object)">
+            <summary>
+            Executes the command.
+            </summary>
+            <param name="parameter">Data used by the command. If the command does not require data, this parameter can be set to null.</param>
+        </member>
+        <member name="T:RevitTemplate.UI.ViewModels.MainWindowViewModel">
+            <summary>
+            ViewModel for the main window.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.ViewModels.MainWindowViewModel.#ctor(Autodesk.Revit.UI.UIApplication,RevitTemplate.Infrastructure.StringParameterEventHandler,RevitTemplate.Infrastructure.ViewEventHandler)">
+            <summary>
+            Initializes a new instance of the MainWindowViewModel class.
+            </summary>
+            <param name="uiApplication">The Revit UI application.</param>
+            <param name="stringEventHandler">The string parameter event handler.</param>
+            <param name="viewEventHandler">The view event handler.</param>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.LogText">
+            <summary>
+            Gets or sets the log text.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.DocumentDataSelected">
+            <summary>
+            Gets or sets a value indicating whether document data is selected.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.SheetDataSelected">
+            <summary>
+            Gets or sets a value indicating whether sheet data is selected.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.WallDataSelected">
+            <summary>
+            Gets or sets a value indicating whether wall data is selected.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteStringCommand">
+            <summary>
+            Gets the command for executing a string parameter event.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteViewCommand">
+            <summary>
+            Gets the command for executing a view parameter event.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteMethodACommand">
+            <summary>
+            Gets the command for executing method A.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteMethodBCommand">
+            <summary>
+            Gets the command for executing method B.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteMethodCCommand">
+            <summary>
+            Gets the command for executing method C.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.ViewModels.MainWindowViewModel.AppendToLog(System.String)">
+            <summary>
+            Appends text to the log.
+            </summary>
+            <param name="text">The text to append.</param>
+        </member>
+        <member name="T:RevitTemplate.UI.Views.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.MainWindow.#ctor">
+            <summary>
+            Initializes a new instance of the MainWindow class.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.Views.MainWindow.DocumentDataSelected">
+            <summary>
+            Gets a value indicating whether document data is selected.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.Views.MainWindow.SheetDataSelected">
+            <summary>
+            Gets a value indicating whether sheet data is selected.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.Views.MainWindow.WallDataSelected">
+            <summary>
+            Gets a value indicating whether wall data is selected.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.MainWindow.AppendToLog(System.String)">
+            <summary>
+            Appends text to the debug log.
+            </summary>
+            <param name="text">The text to append.</param>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.Commands.SingleThreadCommand">
+            <summary>
+            External command for launching the application in a single thread.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Commands.SingleThreadCommand.Execute(Autodesk.Revit.UI.ExternalCommandData,System.String@,Autodesk.Revit.DB.ElementSet)">
+            <summary>
+            Executes the command.
+            </summary>
+            <param name="commandData">The command data.</param>
+            <param name="message">The message.</param>
+            <param name="elements">The elements.</param>
+            <returns>The result of the command.</returns>
+        </member>
+        <member name="T:RevitTemplate.Commands.MultiThreadCommand">
+            <summary>
+            External command for launching the application in a separate thread.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Commands.MultiThreadCommand.Execute(Autodesk.Revit.UI.ExternalCommandData,System.String@,Autodesk.Revit.DB.ElementSet)">
+            <summary>
+            Executes the command.
+            </summary>
+            <param name="commandData">The command data.</param>
+            <param name="message">The message.</param>
+            <param name="elements">The elements.</param>
+            <returns>The result of the command.</returns>
+        </member>
+        <member name="T:RevitTemplate.Utils.Logger">
+            <summary>
+            Utility class for logging and error handling.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Utils.Logger.LogThreadInfo(System.String)">
+            <summary>
+            Logs information about the current thread.
+            </summary>
+            <param name="name">The name of the process or operation.</param>
+        </member>
+        <member name="M:RevitTemplate.Utils.Logger.HandleError(System.Exception)">
+            <summary>
+            Handles and logs an exception.
+            </summary>
+            <param name="ex">The exception to handle.</param>
+        </member>
+        <member name="M:RevitTemplate.Utils.Logger.LogMessage(System.String)">
+            <summary>
+            Logs a message with a timestamp.
+            </summary>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="T:RevitTemplate.RevitApp">
+            <summary>
+            Main application class that implements IExternalApplication.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.RevitApp.Instance">
+            <summary>
+            Gets the singleton instance of the application.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.RevitApp.OnStartup(Autodesk.Revit.UI.UIControlledApplication)">
+            <summary>
+            Called when Revit starts up.
+            </summary>
+            <param name="application">The UI controlled application.</param>
+            <returns>The result of the startup.</returns>
+        </member>
+        <member name="M:RevitTemplate.RevitApp.OnShutdown(Autodesk.Revit.UI.UIControlledApplication)">
+            <summary>
+            Called when Revit shuts down.
+            </summary>
+            <param name="application">The UI controlled application.</param>
+            <returns>The result of the shutdown.</returns>
+        </member>
+        <member name="M:RevitTemplate.RevitApp.ShowMainWindow(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Shows the main window in a single thread.
+            </summary>
+            <param name="uiApplication">The Revit UI application.</param>
+        </member>
+        <member name="M:RevitTemplate.RevitApp.ShowMainWindowSeparateThread(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Shows the main window in a separate thread.
+            </summary>
+            <param name="uiApplication">The Revit UI application.</param>
+        </member>
+        <member name="T:RevitTemplate.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Properties.Resources._Error">
+            <summary>
+              Looks up a localized string similar to Error.
+            </summary>
+        </member>
+    </members>
+</doc>
