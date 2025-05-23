@@ -20,7 +20,7 @@ namespace RevitTemplate
     /// </summary>
     public class RevitApp : IExternalApplication
     {
-        private MainWindow _mainWindow;
+        private CiclopeWindow _window;
         private Thread _uiThread;
 
         /// <summary>
@@ -60,6 +60,8 @@ namespace RevitTemplate
             }
         }
 
+
+
         /// <summary>
         /// Called when Revit shuts down.
         /// </summary>
@@ -70,8 +72,8 @@ namespace RevitTemplate
             try
             {
                 // Clean up resources
-                _mainWindow = null;
-                
+                _window = null;
+
                 return Result.Succeeded;
             }
             catch (Exception ex)
@@ -82,125 +84,14 @@ namespace RevitTemplate
         }
 
 
-        /// <summary>
-        /// Shows the main window in a single thread.
-        /// </summary>
-        /// <param name="uiApplication">The Revit UI application.</param>
-        public void ShowMainWindow(UIApplication uiApplication)
-        {
-            try
-            {
-                // If the window is already open, return
-                if (_mainWindow != null)
-                {
-                    _mainWindow.Activate();
-                    return;
-                }
 
-                // Create services
-                IRevitDocumentService documentService = new RevitDocumentService(uiApplication);
-
-                // Create event handlers
-                StringParameterEventHandler stringEventHandler = new StringParameterEventHandler();
-                ViewEventHandler viewEventHandler = new ViewEventHandler(documentService);
-
-                // Create view model
-                MainWindowViewModel viewModel = new MainWindowViewModel(
-                    uiApplication,
-                    stringEventHandler,
-                    viewEventHandler);
-
-                // Create and show the window
-                _mainWindow = new MainWindow
-                {
-                    DataContext = viewModel
-                };
-
-                _mainWindow.Closed += (s, e) => _mainWindow = null;
-                _mainWindow.Show();
-            }
-            catch (Exception ex)
-            {
-                Logger.HandleError(ex);
-                TaskDialog.Show("Error", $"An error occurred: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Shows the main window in a separate thread.
-        /// </summary>
-        /// <param name="uiApplication">The Revit UI application.</param>
-        public void ShowMainWindowSeparateThread(UIApplication uiApplication)
-        {
-            try
-            {
-                // If the thread is already running, return
-                if (_uiThread != null && _uiThread.IsAlive)
-                {
-                    return;
-                }
-
-                // Create services
-                IRevitDocumentService documentService = new RevitDocumentService(uiApplication);
-
-                // Create event handlers
-                StringParameterEventHandler stringEventHandler = new StringParameterEventHandler();
-                ViewEventHandler viewEventHandler = new ViewEventHandler(documentService);
-
-                // Start a new thread for the UI
-                _uiThread = new Thread(() =>
-                {
-                    try
-                    {
-                        // Set up the synchronization context
-                        SynchronizationContext.SetSynchronizationContext(
-                            new DispatcherSynchronizationContext(
-                                Dispatcher.CurrentDispatcher));
-
-                        // Create view model
-                        MainWindowViewModel viewModel = new MainWindowViewModel(
-                            uiApplication,
-                            stringEventHandler,
-                            viewEventHandler);
-
-                        // Create and show the window
-                        _mainWindow = new MainWindow
-                        {
-                            DataContext = viewModel
-                        };
-
-                        _mainWindow.Closed += (s, e) =>
-                        {
-                            _mainWindow = null;
-                            Dispatcher.CurrentDispatcher.InvokeShutdown();
-                        };
-
-                        _mainWindow.Show();
-                        Dispatcher.Run();
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.HandleError(ex);
-                    }
-                });
-
-                _uiThread.SetApartmentState(ApartmentState.STA);
-                _uiThread.IsBackground = true;
-                _uiThread.Start();
-            }
-            catch (Exception ex)
-            {
-                Logger.HandleError(ex);
-                TaskDialog.Show("Error", $"An error occurred: {ex.Message}");
-            }
-        }
 
         public void ShowCiclopeWindow(UIApplication uiApplication)
         {
             try
             {
-                var window = new CiclopeWindow();
-                window.Show();
+                _window = new CiclopeWindow();
+                _window.Show();
             }
             catch (Exception ex)
             {

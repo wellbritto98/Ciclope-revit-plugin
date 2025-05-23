@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-41881238189
+4-1654739355
 2960847164
-34920989696
+311510471267
 631213828593
-UI\Views\CiclopeWindow\CiclopeWindow.xaml;UI\Views\CiclopeWindow\Pages\OrcamentoPage.xaml;UI\Views\CiclopeWindow\Pages\ParametrosPage.xaml;UI\Views\MainWindow.xaml;
+UI\Views\CiclopeWindow\CiclopeWindow.xaml;UI\Views\CiclopeWindow\Pages\OrcamentoPage.xaml;UI\Views\CiclopeWindow\Pages\ParametrosPage.xaml;UI\Views\CiclopeWindow\Pages\LoginPage.xaml;
 
 False
 
