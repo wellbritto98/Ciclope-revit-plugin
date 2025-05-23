@@ -81,15 +81,13 @@ namespace RevitTemplate.Models
         /// <summary>
         /// Formatted volume for display (includes units)
         /// </summary>
-        public string VolumeFormatted => Volume > 0 ? $"{Math.Round(Volume, 2)} m³" : "N/A";
-
-        /// <summary>
+        public string VolumeFormatted => Volume > 0 ? $"{Math.Round(Volume, 2)} m³" : "N/A";        /// <summary>
         /// Formatted perimeter for display (includes units)
         /// </summary>
         public string PerimeterFormatted => Perimeter > 0 ? $"{Math.Round(Perimeter, 2)} m" : "N/A";
 
-        #region Parametros CICLOPE
-
+        #region Parametros CICLOPE    
+        
         private string _valorBase;
         /// <summary>
         /// Parâmetro Base CICLOPE
@@ -99,9 +97,13 @@ namespace RevitTemplate.Models
             get => _valorBase;
             set
             {
-                if (SetProperty(ref _valorBase, value))
+                // Só disparar evento se realmente houve mudança e não estamos em modo de edição
+                if (_valorBase != value)
                 {
-                    // Quando o valor for alterado, disparar evento para atualização do valor em todos os elementos
+                    _valorBase = value;
+                    OnPropertyChanged(nameof(ValorBase));
+                    
+                    // Disparar evento para atualização no Revit
                     ParametroCiclopeAlterado?.Invoke(this, new ParametroCiclopeEventArgs("Base", value, RevitElementIds));
                 }
             }
@@ -116,9 +118,12 @@ namespace RevitTemplate.Models
             get => _valorEstado;
             set
             {
-                if (SetProperty(ref _valorEstado, value))
+                if (_valorEstado != value)
                 {
-                    // Quando o valor for alterado, disparar evento para atualização do valor em todos os elementos
+                    _valorEstado = value;
+                    OnPropertyChanged(nameof(ValorEstado));
+                    
+                    // Disparar evento para atualização no Revit
                     ParametroCiclopeAlterado?.Invoke(this, new ParametroCiclopeEventArgs("Estado", value, RevitElementIds));
                 }
             }
@@ -133,9 +138,12 @@ namespace RevitTemplate.Models
             get => _valorCodigo;
             set
             {
-                if (SetProperty(ref _valorCodigo, value))
+                if (_valorCodigo != value)
                 {
-                    // Quando o valor for alterado, disparar evento para atualização do valor em todos os elementos
+                    _valorCodigo = value;
+                    OnPropertyChanged(nameof(ValorCodigo));
+                    
+                    // Disparar evento para atualização no Revit
                     ParametroCiclopeAlterado?.Invoke(this, new ParametroCiclopeEventArgs("Codigo", value, RevitElementIds));
                 }
             }

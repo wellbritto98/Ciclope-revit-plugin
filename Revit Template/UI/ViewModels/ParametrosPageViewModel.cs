@@ -97,6 +97,15 @@ namespace RevitTemplate.ViewModels
                 return;
             }
 
+            var dialog = new ContentDialog();
+            dialog.Title = "Adicionando parâmetros...";
+            dialog.Content = new ProgressRing { IsIndeterminate = true };
+            dialog.IsPrimaryButtonEnabled = false;
+            dialog.IsSecondaryButtonEnabled = false;
+
+            // Add CancellationToken.None as required parameter
+            _dialogService.ShowAsync(dialog, CancellationToken.None);
+
             string sharedParameterFilePath = GetSharedParameterFilePath();
 
             if (!System.IO.File.Exists(sharedParameterFilePath))
@@ -129,9 +138,19 @@ namespace RevitTemplate.ViewModels
                 resultMessage = $"Erro ao adicionar parâmetros: {ex.Message}";
                 isSuccess = false;
             }
+            finally
+            {
+                dialog.Hide();
+            }
 
-
-
+            // Add null for icon and TimeSpan for duration
+            _snackbarService.Show(
+                "Resultado",
+                resultMessage,
+                isSuccess ? ControlAppearance.Success : ControlAppearance.Danger,
+                null,
+                TimeSpan.FromSeconds(3)
+            );
         }
         private void OnAtualizarTabela(object parameter)
         {
@@ -470,14 +489,7 @@ namespace RevitTemplate.ViewModels
                         _fillParametersHandler.Raise(parametros);
                     });
 
-                    // Notificar o usuário
-                    _snackbarService.Show(
-                        "Parâmetros atualizados",
-                        $"Parâmetro {e.NomeParametro} atualizado em {e.ElementoIds.Count} elemento(s).",
-                        ControlAppearance.Success,
-                        null,
-                        TimeSpan.FromSeconds(3)
-                    );
+                    
                 }
                 finally
                 {

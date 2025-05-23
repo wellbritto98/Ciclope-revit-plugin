@@ -42,11 +42,6 @@
             Inicializa uma nova instância da classe <see cref="T:RevitTemplate.UI.Views.Pages.ParametrosPage"/>.
             </summary>
         </member>
-        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.ElementosDataGrid_CellEditEnding(System.Object,System.Windows.Controls.DataGridCellEditEndingEventArgs)">
-            <summary>
-            Manipulador de evento que é chamado quando uma edição de célula é finalizada
-            </summary>
-        </member>
         <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.ShowContentDialogAsync(Wpf.Ui.Controls.ContentDialog,Wpf.Ui.IContentDialogService)">
             <summary>
             Exibe um diálogo de conteúdo assíncrono.

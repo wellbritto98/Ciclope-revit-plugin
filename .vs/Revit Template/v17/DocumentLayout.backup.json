@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\viewmodels\\parametrospageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\viewmodels\\parametrospageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|c:\\users\\zearq\\onedrive\\documentos\\projetos\\particular\\revit-wpf-template\\revit template\\models\\elementinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\models\\elementinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\views\\ciclopewindow\\pages\\parametrospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\views\\ciclopewindow\\pages\\parametrospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\views\\ciclopewindow\\pages\\parametrospage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\views\\ciclopewindow\\pages\\parametrospage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\views\\ciclopewindow\\pages\\parametrospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\views\\ciclopewindow\\pages\\parametrospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\ui\\viewmodels\\parametrospageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\ui\\viewmodels\\parametrospageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|c:\\users\\zearq\\onedrive\\documentos\\projetos\\particular\\revit-wpf-template\\revit template\\infrastructure\\fillciclopeparameterseventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|c:\\users\\zearq\\onedrive\\documentos\\projetos\\particular\\revit-wpf-template\\revit template\\services\\familyparameterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\services\\familyparameterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|c:\\users\\zearq\\onedrive\\documentos\\projetos\\particular\\revit-wpf-template\\revit template\\models\\elementinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|solutionrelative:revit template\\models\\elementinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80671941-95DE-4707-9C40-758E89CBD063}|Revit Template\\Revit Template.csproj|C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\revit template\\services\\revitdocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -113,37 +113,37 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "FillCiclopeParametersEventHandler.cs",
               "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Infrastructure\\FillCiclopeParametersEventHandler.cs",
               "RelativeDocumentMoniker": "Revit Template\\Infrastructure\\FillCiclopeParametersEventHandler.cs",
               "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Infrastructure\\FillCiclopeParametersEventHandler.cs",
               "RelativeToolTip": "Revit Template\\Infrastructure\\FillCiclopeParametersEventHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwAsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-23T13:45:44.876Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "ElementInfo.cs",
               "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Models\\ElementInfo.cs",
               "RelativeDocumentMoniker": "Revit Template\\Models\\ElementInfo.cs",
               "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Models\\ElementInfo.cs",
               "RelativeToolTip": "Revit Template\\Models\\ElementInfo.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFEAAAAAAAAAAADgv2IAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-23T13:45:24.418Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "FamilyParameterService.cs",
               "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\Services\\FamilyParameterService.cs",
               "RelativeDocumentMoniker": "Revit Template\\Services\\FamilyParameterService.cs",
@@ -156,40 +156,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ParametrosPage.xaml",
               "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml",
               "RelativeDocumentMoniker": "Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml",
-              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml",
-              "RelativeToolTip": "Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml*",
+              "RelativeToolTip": "Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-05-21T17:29:29.733Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ParametrosPageViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\ParametrosPageViewModel.cs",
-              "RelativeDocumentMoniker": "Revit Template\\UI\\ViewModels\\ParametrosPageViewModel.cs",
-              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\ParametrosPageViewModel.cs",
-              "RelativeToolTip": "Revit Template\\UI\\ViewModels\\ParametrosPageViewModel.cs",
-              "ViewState": "AgIAAMYBAAAAAAAAAAAYwNcBAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T17:12:11.845Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ParametrosPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml.cs",
               "RelativeDocumentMoniker": "Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml.cs",
               "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml.cs",
               "RelativeToolTip": "Revit Template\\UI\\Views\\CiclopeWindow\\Pages\\ParametrosPage.xaml.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAADgvzIAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T00:06:14.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ParametrosPageViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\ParametrosPageViewModel.cs",
+              "RelativeDocumentMoniker": "Revit Template\\UI\\ViewModels\\ParametrosPageViewModel.cs",
+              "ToolTip": "C:\\Users\\zearq\\OneDrive\\Documentos\\projetos\\Particular\\revit-wpf-template\\Revit Template\\UI\\ViewModels\\ParametrosPageViewModel.cs",
+              "RelativeToolTip": "Revit Template\\UI\\ViewModels\\ParametrosPageViewModel.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAAAGgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:12:11.845Z",
               "EditorCaption": ""
             },
             {

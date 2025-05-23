@@ -95,9 +95,7 @@
                   HeadersVisibility="Column"
                   GridLinesVisibility="All"
                   IsReadOnly="False"
-                  x:Name="ElementosDataGrid"
-                  CellEditEnding="ElementosDataGrid_CellEditEnding"
-                  HorizontalScrollBarVisibility="Auto"
+                  x:Name="ElementosDataGrid"                  HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto"
                   ScrollViewer.CanContentScroll="True"
                   ItemsSource="{Binding ViewModel.Elementos}"
@@ -128,7 +126,7 @@
                                 <!-- Botão de preencher parâmetros -->
                                 <ui:Button 
                                     ToolTip="Buscar serviço/Insumo" 
-                                    Icon="{ui:SymbolIcon Symbol=Edit16}" 
+                                    Icon="{ui:SymbolIcon Symbol=BoxSearch16}" 
                                     Margin="2,0"
                                 />
                             </StackPanel>

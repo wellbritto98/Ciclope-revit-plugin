@@ -31,57 +31,7 @@ namespace RevitTemplate.UI.Views.Pages
             // Inicializa serviços
             ViewModel._snackbarService.SetSnackbarPresenter(Snackbar);
             ViewModel._dialogService.SetDialogHost(RootContentDialog);
-        }
-
-        /// <summary>
-        /// Manipulador de evento que é chamado quando uma edição de célula é finalizada
-        /// </summary>
-        private void ElementosDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                var column = e.Column as DataGridBoundColumn;
-                if (column != null)
-                {
-                    // Obter o caminho de binding da coluna
-                    var bindingPath = (column.Binding as System.Windows.Data.Binding)?.Path.Path;
-                    if (!string.IsNullOrEmpty(bindingPath))
-                    {
-                        // Obter o elemento que está sendo editado
-                        var elementInfo = e.Row.Item as ElementInfo;
-                        if (elementInfo != null)
-                        {
-                            // Obter o valor inserido pelo usuário
-                            var textBox = e.EditingElement as TextBox;
-                            if (textBox != null)
-                            {
-                                string novoValor = textBox.Text;
-                                string paramName = string.Empty;
-                                
-                                // Identificar qual parâmetro CICLOPE está sendo editado e definir o nome para o Revit
-                                switch (bindingPath)
-                                {
-                                    case "ValorBase":
-                                        paramName = "Base";
-                                        elementInfo.ValorBase = novoValor; // Isso vai disparar o evento ParametroCiclopeAlterado
-                                        break;
-                                    case "ValorEstado":
-                                        paramName = "Estado";
-                                        elementInfo.ValorEstado = novoValor; // Isso vai disparar o evento ParametroCiclopeAlterado
-                                        break;
-                                    case "ValorCodigo":
-                                        paramName = "Codigo";
-                                        elementInfo.ValorCodigo = novoValor; // Isso vai disparar o evento ParametroCiclopeAlterado
-                                        break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
+        }        /// <summary>
         /// Exibe um diálogo de conteúdo assíncrono.
         /// </summary>
         public async Task ShowContentDialogAsync(ContentDialog dialog, IContentDialogService dialogService)
