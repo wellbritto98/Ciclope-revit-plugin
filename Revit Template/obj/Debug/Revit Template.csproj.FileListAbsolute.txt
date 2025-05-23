@@ -51,11 +51,9 @@ C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit 
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.Abstractions.pdb
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.AssemblyReference.cache
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\ParametrosPage.baml
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\MainWindow.baml
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\CiclopeWindow.g.cs
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\OrcamentoPage.g.cs
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\ParametrosPage.g.cs
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\MainWindow.g.cs
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate_MarkupCompile.cache
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate_MarkupCompile.lref

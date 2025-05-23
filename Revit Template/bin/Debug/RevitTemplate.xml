@@ -75,45 +75,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:RevitTemplate.UI.Views.MainWindow">
-            <summary>
-            Interaction logic for MainWindow.xaml
-            </summary>
-            <summary>
-            MainWindow
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.MainWindow.#ctor">
-            <summary>
-            Initializes a new instance of the MainWindow class.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.Views.MainWindow.DocumentDataSelected">
-            <summary>
-            Gets a value indicating whether document data is selected.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.Views.MainWindow.SheetDataSelected">
-            <summary>
-            Gets a value indicating whether sheet data is selected.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.Views.MainWindow.WallDataSelected">
-            <summary>
-            Gets a value indicating whether wall data is selected.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.MainWindow.AppendToLog(System.String)">
-            <summary>
-            Appends text to the debug log.
-            </summary>
-            <param name="text">The text to append.</param>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.MainWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:RevitTemplate.UI.ViewModels.ViewModelBase">
             <summary>
             Base class for all ViewModels in the application.
@@ -171,70 +132,6 @@
             Executes the command.
             </summary>
             <param name="parameter">Data used by the command. If the command does not require data, this parameter can be set to null.</param>
-        </member>
-        <member name="T:RevitTemplate.UI.ViewModels.MainWindowViewModel">
-            <summary>
-            ViewModel for the main window.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.ViewModels.MainWindowViewModel.#ctor(Autodesk.Revit.UI.UIApplication,RevitTemplate.Infrastructure.StringParameterEventHandler,RevitTemplate.Infrastructure.ViewEventHandler)">
-            <summary>
-            Initializes a new instance of the MainWindowViewModel class.
-            </summary>
-            <param name="uiApplication">The Revit UI application.</param>
-            <param name="stringEventHandler">The string parameter event handler.</param>
-            <param name="viewEventHandler">The view event handler.</param>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.LogText">
-            <summary>
-            Gets or sets the log text.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.DocumentDataSelected">
-            <summary>
-            Gets or sets a value indicating whether document data is selected.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.SheetDataSelected">
-            <summary>
-            Gets or sets a value indicating whether sheet data is selected.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.WallDataSelected">
-            <summary>
-            Gets or sets a value indicating whether wall data is selected.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteStringCommand">
-            <summary>
-            Gets the command for executing a string parameter event.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteViewCommand">
-            <summary>
-            Gets the command for executing a view parameter event.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteMethodACommand">
-            <summary>
-            Gets the command for executing method A.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteMethodBCommand">
-            <summary>
-            Gets the command for executing method B.
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.UI.ViewModels.MainWindowViewModel.ExecuteMethodCCommand">
-            <summary>
-            Gets the command for executing method C.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.ViewModels.MainWindowViewModel.AppendToLog(System.String)">
-            <summary>
-            Appends text to the log.
-            </summary>
-            <param name="text">The text to append.</param>
         </member>
         <member name="T:RevitTemplate.Infrastructure.FillCiclopeParametersEventHandler">
             <summary>
@@ -298,18 +195,6 @@
             Obtém o ElementId do tipo de vista 3D padrão
             </summary>
         </member>
-        <member name="T:RevitTemplate.Infrastructure.StringParameterEventHandler">
-            <summary>
-            Event handler for operations that require a string parameter.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.StringParameterEventHandler.Execute(Autodesk.Revit.UI.UIApplication,System.String)">
-            <summary>
-            Executes the event handler with the specified string parameter.
-            </summary>
-            <param name="app">The Revit UI application.</param>
-            <param name="parameter">The string parameter passed to the event handler.</param>
-        </member>
         <member name="T:RevitTemplate.Infrastructure.UpdateElementsGridEventHandler">
             <summary>
             EventHandler para atualizar o grid de elementos no ViewModel
@@ -327,24 +212,6 @@
             </summary>
             <param name="app">A aplicação Revit</param>
             <param name="parameter">Parâmetro adicional (não utilizado)</param>
-        </member>
-        <member name="T:RevitTemplate.Infrastructure.ViewEventHandler">
-            <summary>
-            Event handler for operations that require a View parameter.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.ViewEventHandler.#ctor(RevitTemplate.Core.Services.IRevitDocumentService)">
-            <summary>
-            Initializes a new instance of the ViewEventHandler class.
-            </summary>
-            <param name="documentService">The document service.</param>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.ViewEventHandler.Execute(Autodesk.Revit.UI.UIApplication,RevitTemplate.UI.Views.MainWindow)">
-            <summary>
-            Executes the event handler with the specified View parameter.
-            </summary>
-            <param name="app">The Revit UI application.</param>
-            <param name="window">The main window passed to the event handler.</param>
         </member>
         <member name="T:RevitTemplate.Infrastructure.AddCiclopeParametersEventHandler">
             <summary>
@@ -623,34 +490,6 @@
             Manipulador de evento disparado quando um parâmetro CICLOPE é alterado
             </summary>
         </member>
-        <member name="T:RevitTemplate.Commands.SingleThreadCommand">
-            <summary>
-            External command for launching the application in a single thread.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.Commands.SingleThreadCommand.Execute(Autodesk.Revit.UI.ExternalCommandData,System.String@,Autodesk.Revit.DB.ElementSet)">
-            <summary>
-            Executes the command.
-            </summary>
-            <param name="commandData">The command data.</param>
-            <param name="message">The message.</param>
-            <param name="elements">The elements.</param>
-            <returns>The result of the command.</returns>
-        </member>
-        <member name="T:RevitTemplate.Commands.MultiThreadCommand">
-            <summary>
-            External command for launching the application in a separate thread.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.Commands.MultiThreadCommand.Execute(Autodesk.Revit.UI.ExternalCommandData,System.String@,Autodesk.Revit.DB.ElementSet)">
-            <summary>
-            Executes the command.
-            </summary>
-            <param name="commandData">The command data.</param>
-            <param name="message">The message.</param>
-            <param name="elements">The elements.</param>
-            <returns>The result of the command.</returns>
-        </member>
         <member name="T:RevitTemplate.Commands.CiclopeCommand">
             <summary>
             External command for launching the application in a single thread.
@@ -712,18 +551,6 @@
             <param name="application">The UI controlled application.</param>
             <returns>The result of the shutdown.</returns>
         </member>
-        <member name="M:RevitTemplate.RevitApp.ShowMainWindow(Autodesk.Revit.UI.UIApplication)">
-            <summary>
-            Shows the main window in a single thread.
-            </summary>
-            <param name="uiApplication">The Revit UI application.</param>
-        </member>
-        <member name="M:RevitTemplate.RevitApp.ShowMainWindowSeparateThread(Autodesk.Revit.UI.UIApplication)">
-            <summary>
-            Shows the main window in a separate thread.
-            </summary>
-            <param name="uiApplication">The Revit UI application.</param>
-        </member>
         <member name="T:RevitTemplate.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -743,36 +570,6 @@
         <member name="P:RevitTemplate.Properties.Resources._Error">
             <summary>
               Looks up a localized string similar to Error.
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

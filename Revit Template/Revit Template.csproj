@@ -105,10 +105,8 @@
     <!-- Infrastructure -->
     <Compile Include="Infrastructure\RevitEventHandler.cs" />
     <Compile Include="Infrastructure\SelectElementsEventHandler.cs" />
-    <Compile Include="Infrastructure\StringParameterEventHandler.cs" />
     <Compile Include="Infrastructure\UpdateElementsGridEventHandler.cs" />
     <Compile Include="Infrastructure\UpdateFamilyTypesGridEventHandler.cs" />
-    <Compile Include="Infrastructure\ViewEventHandler.cs" />
     <Compile Include="Infrastructure\AddCiclopeParametersEventHandler.cs" />
     <Compile Include="Models\ElementInfo.cs" />
     <Compile Include="Services\DocumentService.cs" />
@@ -120,7 +118,6 @@
     <Compile Include="UI\ViewModels\ViewModelBase.cs" />
     <Compile Include="UI\ViewModels\ParametrosPageViewModel.cs" />
     <Compile Include="UI\ViewModels\RelayCommand.cs" />
-    <Compile Include="UI\ViewModels\MainWindowViewModel.cs" />
     <Compile Include="UI\ViewModels\CiclopeViewModel.cs" />
     <Compile Include="UI\Views\CiclopeWindow\CiclopeWindow.xaml.cs">
       <DependentUpon>CiclopeWindow.xaml</DependentUpon>
@@ -131,12 +128,7 @@
     <Compile Include="UI\Views\CiclopeWindow\Pages\ParametrosPage.xaml.cs">
       <DependentUpon>ParametrosPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
     <!-- Commands -->
-    <Compile Include="Commands\SingleThreadCommand.cs" />
-    <Compile Include="Commands\MultiThreadCommand.cs" />
     <Compile Include="Commands\CiclopeCommand.cs" />
     <!-- Utils -->
     <Compile Include="Utils\Logger.cs" />
@@ -228,10 +220,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Views\CiclopeWindow\Pages\ParametrosPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
