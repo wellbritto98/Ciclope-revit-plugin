@@ -27,6 +27,7 @@ namespace RevitTemplate
         /// Gets the singleton instance of the application.
         /// </summary>
         public static RevitApp Instance { get; private set; }
+        public static AddCiclopeParametersEventHandler CiclopeParametersEventHandler { get; private set; }
 
         /// <summary>
         /// Called when Revit starts up.
@@ -49,7 +50,7 @@ namespace RevitTemplate
                 
                 // Add buttons to the ribbon panel
                 AddRibbonButtons(panel);
-
+                CiclopeParametersEventHandler = new AddCiclopeParametersEventHandler();
                 return Result.Succeeded;
             }
             catch (Exception ex)
@@ -79,6 +80,7 @@ namespace RevitTemplate
                 return Result.Failed;
             }
         }
+
 
         /// <summary>
         /// Shows the main window in a single thread.
@@ -193,6 +195,20 @@ namespace RevitTemplate
             }
         }
 
+        public void ShowCiclopeWindow(UIApplication uiApplication)
+        {
+            try
+            {
+                var window = new CiclopeWindow();
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleError(ex);
+                TaskDialog.Show("Error", $"An error occurred: {ex.Message}");
+            }
+        }
+
         private RibbonPanel CreateRibbonPanel(UIControlledApplication application)
         {
             // Tab name
@@ -266,6 +282,20 @@ namespace RevitTemplate
                 Uri uriImage = new Uri("pack://application:,,,/RevitTemplate;component/Resources/code-small.png");
                 BitmapImage largeImage = new BitmapImage(uriImage);
                 button2.LargeImage = largeImage;
+            }
+
+            // Add button for CICLOPE mode
+            if (panel.AddItem(
+                new PushButtonData(
+                    "CiclopeCommand",
+                    "CICLOPE",
+                    assemblyPath,
+                    "RevitTemplate.Commands.CiclopeCommand")) is PushButton button3)
+            {
+                button3.ToolTip = "Abre a janela CICLOPE com funcionalidades específicas.";
+                Uri uriImage = new Uri("pack://application:,,,/RevitTemplate;component/Resources/building.png");
+                BitmapImage largeImage = new BitmapImage(uriImage);
+                button3.LargeImage = largeImage;
             }
         }
 

@@ -1,6 +1,7 @@
 using Autodesk.Revit.DB;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RevitTemplate.Models;
 
 namespace RevitTemplate.Core.Services
 {
@@ -39,5 +40,17 @@ namespace RevitTemplate.Core.Services
         /// </summary>
         /// <returns>A string containing wall information.</returns>
         Task<string> GetWallInfoAsync();
+
+        /// <summary>
+        /// Gets all family instances in the current Revit document
+        /// </summary>
+        /// <returns>Collection of Revit family instances</returns>
+        ICollection<FamilyInstance> GetAllFamilyInstances();
+
+        /// <summary>
+        /// Gets grouped element information with calculated properties
+        /// </summary>
+        /// <returns>List of ElementInfo objects containing grouped element data</returns>
+        Task<List<ElementInfo>> GetElementInfoAsync();
     }
 }

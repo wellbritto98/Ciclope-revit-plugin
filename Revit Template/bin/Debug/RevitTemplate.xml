@@ -4,149 +4,120 @@
         <name>RevitTemplate</name>
     </assembly>
     <members>
-        <member name="T:RevitTemplate.Core.Services.IRevitDocumentService">
+        <member name="T:RevitTemplate.UI.Views.Pages.OrcamentoPage">
             <summary>
-            Service interface for Revit document operations.
+            Representa a página de orçamento na interface do usuário.
+            </summary>
+            <summary>
+            OrcamentoPage
             </summary>
         </member>
-        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetCurrentDocument">
+        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.#ctor">
             <summary>
-            Gets the current Revit document.
-            </summary>
-            <returns>The current Revit document.</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetDocumentInfo">
-            <summary>
-            Gets information about the current document.
-            </summary>
-            <returns>A string containing document information.</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetSheetsAsync">
-            <summary>
-            Gets all sheets in the document.
-            </summary>
-            <returns>A list of ViewSheet objects.</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.RenameSheets(System.String)">
-            <summary>
-            Renames all sheets in the document.
-            </summary>
-            <param name="namePrefix">The prefix to use for sheet names.</param>
-            <returns>True if the operation was successful, false otherwise.</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetWallInfoAsync">
-            <summary>
-            Gets information about walls in the document.
-            </summary>
-            <returns>A string containing wall information.</returns>
-        </member>
-        <member name="T:RevitTemplate.Core.Services.RevitDocumentService">
-            <summary>
-            Implementation of the IRevitDocumentService interface.
+            Inicializa uma nova instância da classe <see cref="T:RevitTemplate.UI.Views.Pages.OrcamentoPage"/>.
             </summary>
         </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.#ctor(Autodesk.Revit.UI.UIApplication)">
+        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.OnBaseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Initializes a new instance of the RevitDocumentService class.
+            Manipulador de eventos para o clique do botão de orçamento.
             </summary>
-            <param name="uiApplication">The Revit UI application.</param>
+            <param name="sender">O objeto que disparou o evento.</param>
+            <param name="e">Os dados do evento.</param>
         </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetCurrentDocument">
+        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.InitializeComponent">
             <summary>
-            Gets the current Revit document.
-            </summary>
-            <returns>The current Revit document.</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetDocumentInfo">
-            <summary>
-            Gets information about the current document.
-            </summary>
-            <returns>A string containing document information.</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetSheetsAsync">
-            <summary>
-            Gets all sheets in the document asynchronously.
-            </summary>
-            <returns>A list of ViewSheet objects.</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.RenameSheets(System.String)">
-            <summary>
-            Renames all sheets in the document.
-            </summary>
-            <param name="namePrefix">The prefix to use for sheet names.</param>
-            <returns>True if the operation was successful, false otherwise.</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetWallInfoAsync">
-            <summary>
-            Gets information about walls in the document asynchronously.
-            </summary>
-            <returns>A string containing wall information.</returns>
-        </member>
-        <member name="T:RevitTemplate.Infrastructure.RevitEventHandler`1">
-            <summary>
-            Generic class for handling Revit external events.
-            </summary>
-            <typeparam name="T">The type of argument to pass to the event handler.</typeparam>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.#ctor">
-            <summary>
-            Initializes a new instance of the RevitEventHandler class.
+            InitializeComponent
             </summary>
         </member>
-        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.GetName">
+        <member name="T:RevitTemplate.UI.Views.Pages.ParametrosPage">
             <summary>
-            Gets the name of the event handler.
+            Representa a página de parâmetros na interface do usuário.
             </summary>
-            <returns>The name of the event handler.</returns>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Execute(Autodesk.Revit.UI.UIApplication)">
             <summary>
-            Executes the event handler.
-            </summary>
-            <param name="app">The Revit UI application.</param>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Raise(`0)">
-            <summary>
-            Raises the external event with the specified parameter.
-            </summary>
-            <param name="parameter">The parameter to pass to the event handler.</param>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Execute(Autodesk.Revit.UI.UIApplication,`0)">
-            <summary>
-            Executes the event handler with the specified parameter.
-            </summary>
-            <param name="app">The Revit UI application.</param>
-            <param name="parameter">The parameter passed to the event handler.</param>
-        </member>
-        <member name="T:RevitTemplate.Infrastructure.StringParameterEventHandler">
-            <summary>
-            Event handler for operations that require a string parameter.
+            ParametrosPage
             </summary>
         </member>
-        <member name="M:RevitTemplate.Infrastructure.StringParameterEventHandler.Execute(Autodesk.Revit.UI.UIApplication,System.String)">
+        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.#ctor">
             <summary>
-            Executes the event handler with the specified string parameter.
-            </summary>
-            <param name="app">The Revit UI application.</param>
-            <param name="parameter">The string parameter passed to the event handler.</param>
-        </member>
-        <member name="T:RevitTemplate.Infrastructure.ViewEventHandler">
-            <summary>
-            Event handler for operations that require a View parameter.
+            Inicializa uma nova instância da classe <see cref="T:RevitTemplate.UI.Views.Pages.ParametrosPage"/>.
             </summary>
         </member>
-        <member name="M:RevitTemplate.Infrastructure.ViewEventHandler.#ctor(RevitTemplate.Core.Services.IRevitDocumentService)">
+        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.ElementosDataGrid_CellEditEnding(System.Object,System.Windows.Controls.DataGridCellEditEndingEventArgs)">
             <summary>
-            Initializes a new instance of the ViewEventHandler class.
+            Manipulador de evento que é chamado quando uma edição de célula é finalizada
             </summary>
-            <param name="documentService">The document service.</param>
         </member>
-        <member name="M:RevitTemplate.Infrastructure.ViewEventHandler.Execute(Autodesk.Revit.UI.UIApplication,RevitTemplate.UI.Views.MainWindow)">
+        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.ShowContentDialogAsync(Wpf.Ui.Controls.ContentDialog,Wpf.Ui.IContentDialogService)">
             <summary>
-            Executes the event handler with the specified View parameter.
+            Exibe um diálogo de conteúdo assíncrono.
             </summary>
-            <param name="app">The Revit UI application.</param>
-            <param name="window">The main window passed to the event handler.</param>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.ShowSnackbar(System.String,System.String,Wpf.Ui.ISnackbarService)">
+            <summary>
+            Exibe uma mensagem de snackbar.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.UI.Views.CiclopeWindow">
+            <summary>
+            Interaction logic for CiclopeWindow.xaml
+            </summary>
+            <summary>
+            CiclopeWindow
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:RevitTemplate.UI.Views.CiclopeWindow"/> class.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.UI.Views.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.MainWindow.#ctor">
+            <summary>
+            Initializes a new instance of the MainWindow class.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.Views.MainWindow.DocumentDataSelected">
+            <summary>
+            Gets a value indicating whether document data is selected.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.Views.MainWindow.SheetDataSelected">
+            <summary>
+            Gets a value indicating whether sheet data is selected.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.Views.MainWindow.WallDataSelected">
+            <summary>
+            Gets a value indicating whether wall data is selected.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.MainWindow.AppendToLog(System.String)">
+            <summary>
+            Appends text to the debug log.
+            </summary>
+            <param name="text">The text to append.</param>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
         </member>
         <member name="T:RevitTemplate.UI.ViewModels.ViewModelBase">
             <summary>
@@ -270,43 +241,391 @@
             </summary>
             <param name="text">The text to append.</param>
         </member>
-        <member name="T:RevitTemplate.UI.Views.MainWindow">
+        <member name="T:RevitTemplate.Infrastructure.FillCiclopeParametersEventHandler">
             <summary>
-            Interaction logic for MainWindow.xaml
-            </summary>
-            <summary>
-            MainWindow
+            Event handler para preencher os parâmetros CICLOPE nos elementos Revit
             </summary>
         </member>
-        <member name="M:RevitTemplate.UI.Views.MainWindow.#ctor">
+        <member name="T:RevitTemplate.Infrastructure.RevitEventHandler`1">
             <summary>
-            Initializes a new instance of the MainWindow class.
+            Generic class for handling Revit external events.
+            </summary>
+            <typeparam name="T">The type of argument to pass to the event handler.</typeparam>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.#ctor">
+            <summary>
+            Initializes a new instance of the RevitEventHandler class.
             </summary>
         </member>
-        <member name="P:RevitTemplate.UI.Views.MainWindow.DocumentDataSelected">
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.GetName">
             <summary>
-            Gets a value indicating whether document data is selected.
+            Gets the name of the event handler.
+            </summary>
+            <returns>The name of the event handler.</returns>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Execute(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Executes the event handler.
+            </summary>
+            <param name="app">The Revit UI application.</param>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Raise(`0)">
+            <summary>
+            Raises the external event with the specified parameter.
+            </summary>
+            <param name="parameter">The parameter to pass to the event handler.</param>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.RevitEventHandler`1.Execute(Autodesk.Revit.UI.UIApplication,`0)">
+            <summary>
+            Executes the event handler with the specified parameter.
+            </summary>
+            <param name="app">The Revit UI application.</param>
+            <param name="parameter">The parameter passed to the event handler.</param>
+        </member>
+        <member name="T:RevitTemplate.Infrastructure.SelectElementsEventHandler">
+            <summary>
+            EventHandler para selecionar elementos no modelo 3D
             </summary>
         </member>
-        <member name="P:RevitTemplate.UI.Views.MainWindow.SheetDataSelected">
+        <member name="M:RevitTemplate.Infrastructure.SelectElementsEventHandler.Execute(Autodesk.Revit.UI.UIApplication,System.Collections.Generic.List{System.Int32})">
             <summary>
-            Gets a value indicating whether sheet data is selected.
+            Executa a seleção de elementos no modelo Revit
             </summary>
         </member>
-        <member name="P:RevitTemplate.UI.Views.MainWindow.WallDataSelected">
+        <member name="M:RevitTemplate.Infrastructure.SelectElementsEventHandler.FindOr3DView(Autodesk.Revit.DB.Document)">
             <summary>
-            Gets a value indicating whether wall data is selected.
+            Encontra uma vista 3D no documento ou usa a vista ativa se for 3D
+            Se não encontrar nenhuma vista 3D, abre a vista 3D padrão
             </summary>
         </member>
-        <member name="M:RevitTemplate.UI.Views.MainWindow.AppendToLog(System.String)">
+        <member name="M:RevitTemplate.Infrastructure.SelectElementsEventHandler.GetDefaultView3DTypeId(Autodesk.Revit.DB.Document)">
             <summary>
-            Appends text to the debug log.
+            Obtém o ElementId do tipo de vista 3D padrão
             </summary>
-            <param name="text">The text to append.</param>
         </member>
-        <member name="M:RevitTemplate.UI.Views.MainWindow.InitializeComponent">
+        <member name="T:RevitTemplate.Infrastructure.StringParameterEventHandler">
             <summary>
-            InitializeComponent
+            Event handler for operations that require a string parameter.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.StringParameterEventHandler.Execute(Autodesk.Revit.UI.UIApplication,System.String)">
+            <summary>
+            Executes the event handler with the specified string parameter.
+            </summary>
+            <param name="app">The Revit UI application.</param>
+            <param name="parameter">The string parameter passed to the event handler.</param>
+        </member>
+        <member name="T:RevitTemplate.Infrastructure.UpdateElementsGridEventHandler">
+            <summary>
+            EventHandler para atualizar o grid de elementos no ViewModel
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.UpdateElementsGridEventHandler.#ctor(RevitTemplate.ViewModels.ParametrosPageViewModel)">
+            <summary>
+            Inicializa uma nova instância da classe UpdateElementsGridEventHandler
+            </summary>
+            <param name="viewModel">O ViewModel que receberá os dados</param>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.UpdateElementsGridEventHandler.Execute(Autodesk.Revit.UI.UIApplication,System.Object)">
+            <summary>
+            Executa a busca de elementos do documento Revit e atualiza o ViewModel
+            </summary>
+            <param name="app">A aplicação Revit</param>
+            <param name="parameter">Parâmetro adicional (não utilizado)</param>
+        </member>
+        <member name="T:RevitTemplate.Infrastructure.ViewEventHandler">
+            <summary>
+            Event handler for operations that require a View parameter.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.ViewEventHandler.#ctor(RevitTemplate.Core.Services.IRevitDocumentService)">
+            <summary>
+            Initializes a new instance of the ViewEventHandler class.
+            </summary>
+            <param name="documentService">The document service.</param>
+        </member>
+        <member name="M:RevitTemplate.Infrastructure.ViewEventHandler.Execute(Autodesk.Revit.UI.UIApplication,RevitTemplate.UI.Views.MainWindow)">
+            <summary>
+            Executes the event handler with the specified View parameter.
+            </summary>
+            <param name="app">The Revit UI application.</param>
+            <param name="window">The main window passed to the event handler.</param>
+        </member>
+        <member name="T:RevitTemplate.Infrastructure.AddCiclopeParametersEventHandler">
+            <summary>
+            Event handler to add CICLOPE shared parameters to specific elements in the project.
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.Models.ElementInfo">
+            <summary>
+            Represents summarized information about a Revit element or group of similar elements
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.ElementId">
+            <summary>
+            Unique identifier for grouping elements
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.Name">
+            <summary>
+            Name of the element
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.Category">
+            <summary>
+            Category of the element
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.Type">
+            <summary>
+            Type name of the element
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.Area">
+            <summary>
+            Total area of the element(s) in square meters
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.Volume">
+            <summary>
+            Total volume of the element(s) in cubic meters
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.Perimeter">
+            <summary>
+            Total perimeter of the element(s) in meters
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.Quantity">
+            <summary>
+            Quantity of instances of this element
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.RevitElementIds">
+            <summary>
+            Lista de IDs de elementos do Revit neste grupo
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.AreaFormatted">
+            <summary>
+            Formatted area for display (includes units)
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.VolumeFormatted">
+            <summary>
+            Formatted volume for display (includes units)
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.PerimeterFormatted">
+            <summary>
+            Formatted perimeter for display (includes units)
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.ValorBase">
+            <summary>
+            Parâmetro Base CICLOPE
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.ValorEstado">
+            <summary>
+            Parâmetro Estado CICLOPE
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ElementInfo.ValorCodigo">
+            <summary>
+            Parâmetro Código CICLOPE
+            </summary>
+        </member>
+        <member name="E:RevitTemplate.Models.ElementInfo.ParametroCiclopeAlterado">
+            <summary>
+            Evento disparado quando um parâmetro CICLOPE é alterado para atualizar todos os elementos do grupo
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.Models.ParametroCiclopeEventArgs">
+            <summary>
+            Argumentos do evento quando um parâmetro CICLOPE é alterado
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ParametroCiclopeEventArgs.NomeParametro">
+            <summary>
+            Nome do parâmetro (Base, Estado, Codigo)
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ParametroCiclopeEventArgs.Valor">
+            <summary>
+            Novo valor do parâmetro
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Models.ParametroCiclopeEventArgs.ElementoIds">
+            <summary>
+            IDs dos elementos do Revit que devem ser atualizados
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.Core.Services.FamilyParameterService">
+            <summary>
+            Service to add shared parameters to all families in the project.
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.Core.Services.IRevitDocumentService">
+            <summary>
+            Service interface for Revit document operations.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetCurrentDocument">
+            <summary>
+            Gets the current Revit document.
+            </summary>
+            <returns>The current Revit document.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetDocumentInfo">
+            <summary>
+            Gets information about the current document.
+            </summary>
+            <returns>A string containing document information.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetSheetsAsync">
+            <summary>
+            Gets all sheets in the document.
+            </summary>
+            <returns>A list of ViewSheet objects.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.RenameSheets(System.String)">
+            <summary>
+            Renames all sheets in the document.
+            </summary>
+            <param name="namePrefix">The prefix to use for sheet names.</param>
+            <returns>True if the operation was successful, false otherwise.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetWallInfoAsync">
+            <summary>
+            Gets information about walls in the document.
+            </summary>
+            <returns>A string containing wall information.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetAllFamilyInstances">
+            <summary>
+            Gets all family instances in the current Revit document
+            </summary>
+            <returns>Collection of Revit family instances</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetElementInfoAsync">
+            <summary>
+            Gets grouped element information with calculated properties
+            </summary>
+            <returns>List of ElementInfo objects containing grouped element data</returns>
+        </member>
+        <member name="T:RevitTemplate.Core.Services.RevitDocumentService">
+            <summary>
+            Implementation of the IRevitDocumentService interface.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.#ctor(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Initializes a new instance of the RevitDocumentService class.
+            </summary>
+            <param name="uiApplication">The Revit UI application.</param>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetCurrentDocument">
+            <summary>
+            Gets the current Revit document.
+            </summary>
+            <returns>The current Revit document.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetDocumentInfo">
+            <summary>
+            Gets information about the current document.
+            </summary>
+            <returns>A string containing document information.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetSheetsAsync">
+            <summary>
+            Gets all sheets in the document asynchronously.
+            </summary>
+            <returns>A list of ViewSheet objects.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.RenameSheets(System.String)">
+            <summary>
+            Renames all sheets in the document.
+            </summary>
+            <param name="namePrefix">The prefix to use for sheet names.</param>
+            <returns>True if the operation was successful, false otherwise.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetWallInfoAsync">
+            <summary>
+            Gets information about walls in the document asynchronously.
+            </summary>
+            <returns>A string containing wall information.</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetAllFamilyInstances">
+            <summary>
+            Gets all family instances in the current Revit document
+            </summary>
+            <returns>Collection of Revit family instances</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetElementInfoAsync">
+            <summary>
+            Gets grouped element information with calculated properties
+            </summary>
+            <returns>List of ElementInfo objects containing grouped element data</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.CalculateTotalArea(System.Collections.Generic.IList{Autodesk.Revit.DB.Element})">
+            <summary>
+            Calculates the total area for a collection of elements in square meters
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.CalculateTotalVolume(System.Collections.Generic.IList{Autodesk.Revit.DB.Element})">
+            <summary>
+            Calculates the total volume for a collection of elements in cubic meters
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.CalculateTotalPerimeter(System.Collections.Generic.IList{Autodesk.Revit.DB.Element})">
+            <summary>
+            Calculates the total perimeter for a collection of elements in meters
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.IsAnnotationOrViewElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            Verifica se o elemento é um elemento de anotação, visualização ou interface
+            </summary>
+            <param name="element">O elemento a ser verificado</param>
+            <returns>True se o elemento for de anotação ou visualização</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.IsConstructionElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            Verifica se o elemento é um elemento de construção real
+            </summary>
+            <param name="element">O elemento a ser verificado</param>
+            <returns>True se o elemento for um elemento de construção</returns>
+        </member>
+        <member name="P:RevitTemplate.ViewModels.ParametrosPageViewModel.BotaoAdicionarParametrosVisivel">
+            <summary>
+            Controla a visibilidade do botão de adicionar parâmetros
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.ViewModels.ParametrosPageViewModel.UpdateElements(System.Collections.Generic.List{RevitTemplate.Models.ElementInfo})">
+            <summary>
+            Atualiza a coleção de elementos com os dados recebidos
+            </summary>
+            <param name="elements">Lista de informações de elementos</param>
+        </member>
+        <member name="M:RevitTemplate.ViewModels.ParametrosPageViewModel.OnSelecionarElementos(System.Object)">
+            <summary>
+            Seleciona os elementos de um grupo no modelo 3D
+            </summary>
+            <param name="parameter">O objeto ElementInfo representando o grupo</param>
+        </member>
+        <member name="M:RevitTemplate.ViewModels.ParametrosPageViewModel.PreencherParametrosDoGrupo(RevitTemplate.Models.ElementInfo,System.String,System.String,System.String)">
+            <summary>
+            Preenche os parâmetros CICLOPE para um grupo de elementos
+            </summary>
+            <param name="elementInfo">Informações do grupo de elementos</param>
+            <param name="baseValue">Valor do parâmetro Base</param>
+            <param name="estadoValue">Valor do parâmetro Estado</param>
+            <param name="codigoValue">Valor do parâmetro Codigo</param>
+        </member>
+        <member name="M:RevitTemplate.ViewModels.ParametrosPageViewModel.OnParametroCiclopeAlterado(System.Object,RevitTemplate.Models.ParametroCiclopeEventArgs)">
+            <summary>
+            Manipulador de evento disparado quando um parâmetro CICLOPE é alterado
             </summary>
         </member>
         <member name="T:RevitTemplate.Commands.SingleThreadCommand">
@@ -329,6 +648,20 @@
             </summary>
         </member>
         <member name="M:RevitTemplate.Commands.MultiThreadCommand.Execute(Autodesk.Revit.UI.ExternalCommandData,System.String@,Autodesk.Revit.DB.ElementSet)">
+            <summary>
+            Executes the command.
+            </summary>
+            <param name="commandData">The command data.</param>
+            <param name="message">The message.</param>
+            <param name="elements">The elements.</param>
+            <returns>The result of the command.</returns>
+        </member>
+        <member name="T:RevitTemplate.Commands.CiclopeCommand">
+            <summary>
+            External command for launching the application in a single thread.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Commands.CiclopeCommand.Execute(Autodesk.Revit.UI.ExternalCommandData,System.String@,Autodesk.Revit.DB.ElementSet)">
             <summary>
             Executes the command.
             </summary>
@@ -415,6 +748,36 @@
         <member name="P:RevitTemplate.Properties.Resources._Error">
             <summary>
               Looks up a localized string similar to Error.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>
