@@ -1,0 +1,113 @@
+<Page 
+    x:Class="RevitTemplate.UI.Views.Pages.LogPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Log Console"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Dark" />
+                <ui:ControlsDictionary />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>        <!-- Cabeçalho -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <ui:TextBlock Text="Log Console" FontSize="24" FontWeight="Bold" Grid.Column="0"/>
+            <ui:Button Content="Teste Logs" Grid.Column="1" Click="TestLogsButton_Click" 
+                      Background="{DynamicResource ControlFillColorSecondaryBrush}" 
+                      Margin="10,0,0,0"/>
+            <ui:Button Content="Limpar Logs" Grid.Column="2" Click="ClearLogsButton_Click" 
+                      Background="{DynamicResource ControlFillColorSecondaryBrush}" 
+                      Margin="10,0,0,0"/>
+            <ui:Button Content="Sair" Grid.Column="3" Click="LogoutButton_Click" 
+                      Background="{DynamicResource ControlFillColorSecondaryBrush}" 
+                      Margin="10,0,0,0"/>
+        </Grid>
+
+        <!-- Console de Log -->
+        <Border Grid.Row="1" 
+                Background="{DynamicResource ControlFillColorTertiaryBrush}" 
+                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}" 
+                BorderThickness="1" 
+                CornerRadius="6">
+            <ScrollViewer x:Name="LogScrollViewer" 
+                         VerticalScrollBarVisibility="Auto" 
+                         HorizontalScrollBarVisibility="Auto"
+                         Padding="10">
+                <ItemsControl x:Name="LogItemsControl" ItemsSource="{Binding Logs}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <ui:TextBlock Grid.Column="0" 
+                                             Text="{Binding FormattedTimestamp}" 
+                                             Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                                             FontFamily="Consolas"
+                                             Margin="0,0,10,0"/>
+                                
+                                <ui:TextBlock Grid.Column="1" 
+                                             Text="{Binding LevelText}" 
+                                             Foreground="{Binding LevelColor}"
+                                             FontFamily="Consolas"
+                                             FontWeight="Bold"
+                                             Margin="0,0,10,0"
+                                             MinWidth="60"/>
+                                
+                                <ui:TextBlock Grid.Column="2" 
+                                             Text="{Binding Message}" 
+                                             Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                             FontFamily="Consolas"
+                                             TextWrapping="Wrap"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Rodapé com informações -->
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <ui:TextBlock Grid.Column="0" 
+                         Text="{Binding LogCount, StringFormat='Total de logs: {0}'}" 
+                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                         FontSize="12"/>
+            
+            <ui:TextBlock Grid.Column="1" 
+                         Text="Console em tempo real" 
+                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                         FontSize="12"/>
+        </Grid>
+    </Grid>
+</Page>

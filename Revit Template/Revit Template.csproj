@@ -61,9 +61,12 @@
     <ApplicationManifest>RevitTemplate.addin</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MahApps.Metro.IconPacks" Version="5.1.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
-    <PackageReference Include="MaterialDesignColors" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client">
+      <Version>8.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
     <PackageReference Include="WPF-UI">
       <Version>4.0.0</Version>
       <PrivateAssets>none</PrivateAssets>
@@ -83,10 +86,12 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.XML" />
@@ -94,44 +99,42 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <!-- Core -->
-    <Compile Include="C:/Users/zearq/OneDrive/Documentos/projetos/Particular/revit-wpf-template/Revit Template/UI/Views/CiclopeWindow/Pages/\OrcamentoPage.xaml.cs">
-      <Link>OrcamentoPage.xaml.cs</Link>
-    </Compile>
-    <Compile Include="C:/Users/zearq/OneDrive/Documentos/projetos/Particular/revit-wpf-template/Revit Template/UI/Views/CiclopeWindow/Pages/\ParametrosPage.xaml.cs">
-      <Link>ParametrosPage.xaml.cs</Link>
-    </Compile>
-    <Compile Include="Infrastructure\FillCiclopeParametersEventHandler.cs" />
     <!-- Infrastructure -->
+    <Compile Include="Infrastructure\FillCiclopeParametersEventHandler.cs" />
     <Compile Include="Infrastructure\RevitEventHandler.cs" />
     <Compile Include="Infrastructure\SelectElementsEventHandler.cs" />
     <Compile Include="Infrastructure\UpdateElementsGridEventHandler.cs" />
     <Compile Include="Infrastructure\UpdateFamilyTypesGridEventHandler.cs" />
     <Compile Include="Infrastructure\AddCiclopeParametersEventHandler.cs" />
     <Compile Include="Models\ElementInfo.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\TokenData.cs" />
     <Compile Include="Services\DocumentService.cs" />
+    <Compile Include="Services\TokenService.cs" />
     <Compile Include="Services\FamilyParameterService.cs" />
     <Compile Include="Services\IRevitDocumentService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\LoggingService.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\RevitDocumentService.cs" />
     <!-- UI -->
-    <Compile Include="UI\ViewModels\ViewModelBase.cs" />
-    <Compile Include="UI\ViewModels\ParametrosPageViewModel.cs" />
-    <Compile Include="UI\ViewModels\RelayCommand.cs" />
-    <Compile Include="UI\ViewModels\CiclopeViewModel.cs" />
     <Compile Include="UI\Views\CiclopeWindow\CiclopeWindow.xaml.cs">
       <DependentUpon>CiclopeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Views\CiclopeWindow\Pages\OrcamentoPage.xaml.cs">
       <DependentUpon>OrcamentoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Views\CiclopeWindow\Pages\ParametrosPage.xaml.cs">
-      <DependentUpon>ParametrosPage.xaml</DependentUpon>
+    <Compile Include="UI\Views\CiclopeWindow\Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\CiclopeWindow\Pages\LogPage.xaml.cs">
+      <DependentUpon>LogPage.xaml</DependentUpon>
     </Compile>
     <!-- Commands -->
     <Compile Include="Commands\CiclopeCommand.cs" />
     <!-- Utils -->
     <Compile Include="Utils\Logger.cs" />
+    <Compile Include="Utils\LogServiceTest.cs" />
     <!-- Main -->
     <Compile Include="RevitApp.cs" />
     <!-- Properties -->
@@ -219,7 +222,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Views\CiclopeWindow\Pages\ParametrosPage.xaml">
+    <Page Include="UI\Views\CiclopeWindow\Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\CiclopeWindow\Pages\LogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,9 +249,9 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Copy "$(TargetDir)RevitTemplate.dll" "$(AppData)\Autodesk\Revit\Addins\2024"
-Copy "$(TargetDir)RevitTemplate.addin" "$(AppData)\Autodesk\Revit\Addins\2024"
-Copy "$(TargetDir)Wpf.Ui.dll" "$(AppData)\Autodesk\Revit\Addins\2024"
-Copy "$(TargetDir)Wpf.Ui.Abstractions.dll" "$(AppData)\Autodesk\Revit\Addins\2024"</PostBuildEvent>
+      <PostBuildEvent>
+        Copy "$(TargetDir)*.dll" "$(AppData)\Autodesk\Revit\Addins\2024"
+        Copy "$(TargetDir)RevitTemplate.addin" "$(AppData)\Autodesk\Revit\Addins\2024"
+      </PostBuildEvent>
   </PropertyGroup>
 </Project>

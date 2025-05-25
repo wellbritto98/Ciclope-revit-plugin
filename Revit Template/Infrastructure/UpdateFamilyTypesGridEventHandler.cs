@@ -7,17 +7,15 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using RevitTemplate.Core.Services;
 using RevitTemplate.Utils;
-using RevitTemplate.ViewModels;
 
 namespace RevitTemplate.Infrastructure
 {
     public class UpdateFamilyTypesGridEventHandler : RevitEventHandler<object>
     {
-        private ParametrosPageViewModel _viewModel;
+        
 
-        public UpdateFamilyTypesGridEventHandler(ParametrosPageViewModel viewModel)
+        public UpdateFamilyTypesGridEventHandler()
         {
-            _viewModel = viewModel;
         }
 
         protected override void Execute(UIApplication app, object parameter)
@@ -26,7 +24,7 @@ namespace RevitTemplate.Infrastructure
             {
                 IRevitDocumentService service = new RevitDocumentService(app);
                 var families = service.GetAllFamilyInstances();
-                _viewModel.UpdateFamilyTypes(families);
+                
                 Logger.LogMessage("Tabela de tipos de família atualizada.");
             }
             catch (Exception ex)

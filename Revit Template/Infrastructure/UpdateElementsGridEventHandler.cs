@@ -7,7 +7,6 @@ using Autodesk.Revit.UI;
 using RevitTemplate.Core.Services;
 using RevitTemplate.Models;
 using RevitTemplate.Utils;
-using RevitTemplate.ViewModels;
 
 namespace RevitTemplate.Infrastructure
 {
@@ -16,16 +15,7 @@ namespace RevitTemplate.Infrastructure
     /// </summary>
     public class UpdateElementsGridEventHandler : RevitEventHandler<object>
     {
-        private ParametrosPageViewModel _viewModel;
 
-        /// <summary>
-        /// Inicializa uma nova instância da classe UpdateElementsGridEventHandler
-        /// </summary>
-        /// <param name="viewModel">O ViewModel que receberá os dados</param>
-        public UpdateElementsGridEventHandler(ParametrosPageViewModel viewModel)
-        {
-            _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
-        }
 
         /// <summary>
         /// Executa a busca de elementos do documento Revit e atualiza o ViewModel
@@ -44,7 +34,7 @@ namespace RevitTemplate.Infrastructure
                 var elements = service.GetElementInfoAsync().GetAwaiter().GetResult();
                 
                 // Atualiza o ViewModel com os elementos obtidos
-                _viewModel.UpdateElements(elements);
+                
                 Logger.LogMessage("Tabela de elementos atualizada com sucesso.");
             }
             catch (Exception ex)

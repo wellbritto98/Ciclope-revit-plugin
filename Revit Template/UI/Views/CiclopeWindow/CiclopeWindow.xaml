@@ -35,63 +35,23 @@
     </ui:FluentWindow.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="161*"/>
-            <ColumnDefinition Width="239*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="191*" />
-            <RowDefinition Height="195*"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <ui:TitleBar
-            Title="CICLOPE" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="48"
-         />
+            Title="CICLOPE" 
+            VerticalAlignment="Center" 
+            Grid.Row="0" 
+            Height="48" />
 
-        <ui:NavigationView x:Name="NavigationView" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <ui:NavigationView.AutoSuggestBox>
-                <ui:AutoSuggestBox x:Name="AutoSuggestBox" PlaceholderText="Buscar">
-                    <ui:AutoSuggestBox.Icon>
-                        <ui:IconSourceElement>
-                            <ui:SymbolIconSource Symbol="Search24" />
-                        </ui:IconSourceElement>
-                    </ui:AutoSuggestBox.Icon>
-                </ui:AutoSuggestBox>
-            </ui:NavigationView.AutoSuggestBox>
-            <ui:NavigationView.Header>
-                <ui:BreadcrumbBar
-                    Margin="42,32,0,0"
-                    FontSize="28"
-                    FontWeight="DemiBold" />
-            </ui:NavigationView.Header>
-            <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem 
-                    Content="Parâmetros" 
-                    TargetPageType="{x:Type pages:ParametrosPage}"
-                    NavigationCacheMode="Enabled"
-                    >
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Settings24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem 
-                    Content="Orçamento" 
-                    TargetPageType="{x:Type pages:OrcamentoPage}"
-                    NavigationCacheMode="Enabled"
-                    >
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Money24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-            </ui:NavigationView.MenuItems>
-            <ui:NavigationView.FooterMenuItems>
-                <ui:NavigationViewItem Content="Configurações" Tag="SettingsPage">
-                    <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="Settings24" />
-                    </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
-            </ui:NavigationView.FooterMenuItems>
-        </ui:NavigationView>
+        <!-- Frame para navegação entre páginas -->
+        <Frame 
+            x:Name="ContentFrame" 
+            Grid.Row="1" 
+            NavigationUIVisibility="Hidden"
+            Navigated="ContentFrame_Navigated" />
+
     </Grid>
 </ui:FluentWindow>

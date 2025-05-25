@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using RevitTemplate.Models;
 namespace RevitTemplate.UI.Views.Pages
 {
     /// <summary>
@@ -8,6 +9,7 @@ namespace RevitTemplate.UI.Views.Pages
     public partial class OrcamentoPage : Page
     {
         private int _counter = 0;
+
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="OrcamentoPage"/>.
         /// </summary>

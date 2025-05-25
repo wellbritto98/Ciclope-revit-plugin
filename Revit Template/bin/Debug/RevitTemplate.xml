@@ -4,135 +4,6 @@
         <name>RevitTemplate</name>
     </assembly>
     <members>
-        <member name="T:RevitTemplate.UI.Views.Pages.OrcamentoPage">
-            <summary>
-            Representa a página de orçamento na interface do usuário.
-            </summary>
-            <summary>
-            OrcamentoPage
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.#ctor">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:RevitTemplate.UI.Views.Pages.OrcamentoPage"/>.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.OnBaseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Manipulador de eventos para o clique do botão de orçamento.
-            </summary>
-            <param name="sender">O objeto que disparou o evento.</param>
-            <param name="e">Os dados do evento.</param>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:RevitTemplate.UI.Views.Pages.ParametrosPage">
-            <summary>
-            Representa a página de parâmetros na interface do usuário.
-            </summary>
-            <summary>
-            ParametrosPage
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.#ctor">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:RevitTemplate.UI.Views.Pages.ParametrosPage"/>.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.ShowContentDialogAsync(Wpf.Ui.Controls.ContentDialog,Wpf.Ui.IContentDialogService)">
-            <summary>
-            Exibe um diálogo de conteúdo assíncrono.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.ShowSnackbar(System.String,System.String,Wpf.Ui.ISnackbarService)">
-            <summary>
-            Exibe uma mensagem de snackbar.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.Pages.ParametrosPage.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:RevitTemplate.UI.Views.CiclopeWindow">
-            <summary>
-            Interaction logic for CiclopeWindow.xaml
-            </summary>
-            <summary>
-            CiclopeWindow
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:RevitTemplate.UI.Views.CiclopeWindow"/> class.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:RevitTemplate.UI.ViewModels.ViewModelBase">
-            <summary>
-            Base class for all ViewModels in the application.
-            Implements INotifyPropertyChanged for UI binding.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.ViewModels.ViewModelBase.OnPropertyChanged(System.String)">
-            <summary>
-            Notifies UI that a property has changed.
-            </summary>
-            <param name="propertyName">Name of the property that changed.</param>
-        </member>
-        <member name="M:RevitTemplate.UI.ViewModels.ViewModelBase.SetProperty``1(``0@,``0,System.String)">
-            <summary>
-            Sets a property value and raises the PropertyChanged event if the value has changed.
-            </summary>
-            <typeparam name="T">Type of the property.</typeparam>
-            <param name="field">Reference to the backing field.</param>
-            <param name="value">New value for the property.</param>
-            <param name="propertyName">Name of the property.</param>
-            <returns>True if the value was changed, false otherwise.</returns>
-        </member>
-        <member name="T:RevitTemplate.UI.ViewModels.RelayCommand">
-            <summary>
-            A command implementation that relays its functionality to the provided delegates.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.ViewModels.RelayCommand.#ctor(System.Action{System.Object})">
-            <summary>
-            Creates a new command that can always execute.
-            </summary>
-            <param name="execute">The execution logic.</param>
-        </member>
-        <member name="M:RevitTemplate.UI.ViewModels.RelayCommand.#ctor(System.Action{System.Object},System.Predicate{System.Object})">
-            <summary>
-            Creates a new command.
-            </summary>
-            <param name="execute">The execution logic.</param>
-            <param name="canExecute">The execution status logic.</param>
-        </member>
-        <member name="M:RevitTemplate.UI.ViewModels.RelayCommand.CanExecute(System.Object)">
-            <summary>
-            Determines whether this command can execute in its current state.
-            </summary>
-            <param name="parameter">Data used by the command. If the command does not require data, this parameter can be set to null.</param>
-            <returns>True if this command can be executed; otherwise, false.</returns>
-        </member>
-        <member name="E:RevitTemplate.UI.ViewModels.RelayCommand.CanExecuteChanged">
-            <summary>
-            Occurs when changes occur that affect whether or not the command should execute.
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.UI.ViewModels.RelayCommand.Execute(System.Object)">
-            <summary>
-            Executes the command.
-            </summary>
-            <param name="parameter">Data used by the command. If the command does not require data, this parameter can be set to null.</param>
-        </member>
         <member name="T:RevitTemplate.Infrastructure.FillCiclopeParametersEventHandler">
             <summary>
             Event handler para preencher os parâmetros CICLOPE nos elementos Revit
@@ -199,12 +70,6 @@
             <summary>
             EventHandler para atualizar o grid de elementos no ViewModel
             </summary>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.UpdateElementsGridEventHandler.#ctor(RevitTemplate.ViewModels.ParametrosPageViewModel)">
-            <summary>
-            Inicializa uma nova instância da classe UpdateElementsGridEventHandler
-            </summary>
-            <param name="viewModel">O ViewModel que receberá os dados</param>
         </member>
         <member name="M:RevitTemplate.Infrastructure.UpdateElementsGridEventHandler.Execute(Autodesk.Revit.UI.UIApplication,System.Object)">
             <summary>
@@ -322,6 +187,184 @@
             <summary>
             IDs dos elementos do Revit que devem ser atualizados
             </summary>
+        </member>
+        <member name="T:RevitTemplate.Services.TokenService">
+            <summary>
+            Serviço para gerenciamento de tokens JWT com persistência segura em arquivo JSON
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.TokenService.GetDllDirectory">
+            <summary>
+            Obtém o diretório onde está localizada a DLL
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.TokenService.GetTokenFilePath">
+            <summary>
+            Obtém o caminho completo do arquivo de token
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.TokenService.SaveToken(RevitTemplate.Models.TokenData)">
+            <summary>
+            Salva o token data de forma persistente e segura em arquivo JSON
+            </summary>
+            <param name="tokenData">Dados do token para salvar</param>
+        </member>
+        <member name="M:RevitTemplate.Services.TokenService.GetSavedToken">
+            <summary>
+            Recupera o token salvo do arquivo JSON, se ainda for válido
+            </summary>
+            <returns>TokenData se válido, null caso contrário</returns>
+        </member>
+        <member name="M:RevitTemplate.Services.TokenService.HasValidToken">
+            <summary>
+            Verifica se existe um token válido salvo
+            </summary>
+            <returns>True se existe um token válido</returns>
+        </member>
+        <member name="M:RevitTemplate.Services.TokenService.ClearToken">
+            <summary>
+            Remove o arquivo de token
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.TokenService.GetCurrentToken">
+            <summary>
+            Obtém o token JWT atual se válido
+            </summary>
+            <returns>String do token JWT ou null se inválido</returns>
+        </member>
+        <member name="M:RevitTemplate.Services.TokenService.GetTokenInfo">
+            <summary>
+            Obtém informações sobre o token atual
+            </summary>
+            <returns>String com informações do token</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:RevitTemplate.Services.TokenService.EncryptString(System.String)" -->
+        <member name="M:RevitTemplate.Services.TokenService.DecryptString(System.String)">
+            <summary>
+            Descriptografa uma string usando AES
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.Services.LogService">
+            <summary>
+            Serviço estático para gerenciar logs da aplicação
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.#cctor">
+            <summary>
+            Construtor estático para inicialização segura
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.Initialize(System.Windows.Threading.Dispatcher)">
+            <summary>
+            Define o Dispatcher da UI para operações thread-safe
+            Deve ser chamado da UI thread durante a inicialização da aplicação
+            </summary>
+            <param name="dispatcher">Dispatcher da UI thread</param>
+        </member>
+        <member name="E:RevitTemplate.Services.LogService.LogAdded">
+            <summary>
+            Evento disparado quando um novo log é adicionado
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Services.LogService.Logs">
+            <summary>
+            Coleção de logs observável (thread-safe)
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.LogInfo(System.String)">
+            <summary>
+            Adiciona uma mensagem de informação ao log
+            </summary>
+            <param name="message">Mensagem a ser logada</param>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.LogError(System.String)">
+            <summary>
+            Adiciona uma mensagem de erro ao log
+            </summary>
+            <param name="message">Mensagem a ser logada</param>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.LogWarning(System.String)">
+            <summary>
+            Adiciona uma mensagem de warning ao log
+            </summary>
+            <param name="message">Mensagem a ser logada</param>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.LogDebug(System.String)">
+            <summary>
+            Adiciona uma mensagem de debug ao log
+            </summary>
+            <param name="message">Mensagem a ser logada</param>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.ClearLogs">
+            <summary>
+            Limpa todos os logs
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.ClearLogEntries">
+            <summary>
+            Limpa as entradas de log da coleção (deve ser chamado na UI thread)
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.AddLog(RevitTemplate.Services.LogLevel,System.String)">
+            <summary>
+            Adiciona um log à coleção de forma thread-safe
+            </summary>
+            <param name="level">Nível do log</param>
+            <param name="message">Mensagem</param>
+        </member>
+        <member name="M:RevitTemplate.Services.LogService.AddLogEntry(RevitTemplate.Services.LogEntry)">
+            <summary>
+            Adiciona a entrada de log à coleção (deve ser chamado na UI thread)
+            </summary>
+            <param name="logEntry">Entrada de log a ser adicionada</param>
+        </member>
+        <member name="T:RevitTemplate.Services.LogEntry">
+            <summary>
+            Entrada de log
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.Services.LogLevel">
+            <summary>
+            Níveis de log
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.Services.NavService">
+            <summary>
+            Serviço de navegação para plugins do Revit
+            Gerencia a navegação entre páginas sem depender de Application.Current
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.NavService.RegisterMainWindow(RevitTemplate.UI.Views.CiclopeWindow)">
+            <summary>
+            Registra a janela principal para navegação
+            </summary>
+            <param name="window">Janela principal da aplicação</param>
+        </member>
+        <member name="M:RevitTemplate.Services.NavService.NavigateToPage(System.Object)">
+            <summary>
+            Navega para uma página específica
+            </summary>
+            <param name="page">Página de destino</param>
+            <returns>True se a navegação foi bem-sucedida, False caso contrário</returns>
+        </member>
+        <member name="M:RevitTemplate.Services.NavService.NavigateFromControl(System.Windows.FrameworkElement,System.Object)">
+            <summary>
+            Tenta navegar para uma página usando o controle pai atual como fallback
+            </summary>
+            <param name="currentControl">Controle atual (Page, UserControl, etc.)</param>
+            <param name="page">Página de destino</param>
+            <returns>True se a navegação foi bem-sucedida, False caso contrário</returns>
+        </member>
+        <member name="M:RevitTemplate.Services.NavService.Unregister">
+            <summary>
+            Limpa o registro da janela principal
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Services.NavService.IsInitialized">
+            <summary>
+            Verifica se o serviço está devidamente inicializado
+            </summary>
+            <returns>True se a janela principal está registrada</returns>
         </member>
         <member name="T:RevitTemplate.Core.Services.FamilyParameterService">
             <summary>
@@ -459,35 +502,73 @@
             <param name="element">O elemento a ser verificado</param>
             <returns>True se o elemento for um elemento de construção</returns>
         </member>
-        <member name="P:RevitTemplate.ViewModels.ParametrosPageViewModel.BotaoAdicionarParametrosVisivel">
+        <member name="T:RevitTemplate.UI.Views.CiclopeWindow">
             <summary>
-            Controla a visibilidade do botão de adicionar parâmetros
+            Interaction logic for CiclopeWindow.xaml
+            </summary>
+            <summary>
+            CiclopeWindow
             </summary>
         </member>
-        <member name="M:RevitTemplate.ViewModels.ParametrosPageViewModel.UpdateElements(System.Collections.Generic.List{RevitTemplate.Models.ElementInfo})">
+        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.#ctor">
             <summary>
-            Atualiza a coleção de elementos com os dados recebidos
+            Initializes a new instance of the <see cref="T:RevitTemplate.UI.Views.CiclopeWindow"/> class.
             </summary>
-            <param name="elements">Lista de informações de elementos</param>
         </member>
-        <member name="M:RevitTemplate.ViewModels.ParametrosPageViewModel.OnSelecionarElementos(System.Object)">
+        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.InitializeComponent">
             <summary>
-            Seleciona os elementos de um grupo no modelo 3D
+            InitializeComponent
             </summary>
-            <param name="parameter">O objeto ElementInfo representando o grupo</param>
         </member>
-        <member name="M:RevitTemplate.ViewModels.ParametrosPageViewModel.PreencherParametrosDoGrupo(RevitTemplate.Models.ElementInfo,System.String,System.String,System.String)">
+        <member name="T:RevitTemplate.UI.Views.Pages.OrcamentoPage">
             <summary>
-            Preenche os parâmetros CICLOPE para um grupo de elementos
+            Representa a página de orçamento na interface do usuário.
             </summary>
-            <param name="elementInfo">Informações do grupo de elementos</param>
-            <param name="baseValue">Valor do parâmetro Base</param>
-            <param name="estadoValue">Valor do parâmetro Estado</param>
-            <param name="codigoValue">Valor do parâmetro Codigo</param>
-        </member>
-        <member name="M:RevitTemplate.ViewModels.ParametrosPageViewModel.OnParametroCiclopeAlterado(System.Object,RevitTemplate.Models.ParametroCiclopeEventArgs)">
             <summary>
-            Manipulador de evento disparado quando um parâmetro CICLOPE é alterado
+            OrcamentoPage
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:RevitTemplate.UI.Views.Pages.OrcamentoPage"/>.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.OnBaseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Manipulador de eventos para o clique do botão de orçamento.
+            </summary>
+            <param name="sender">O objeto que disparou o evento.</param>
+            <param name="e">Os dados do evento.</param>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.OrcamentoPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.UI.Views.Pages.LoginPage">
+            <summary>
+            Página de login com email e senha.
+            </summary>
+            <summary>
+            LoginPage
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.LoginPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:RevitTemplate.UI.Views.Pages.LogPage">
+            <summary>
+            Página de console de logs
+            </summary>
+            <summary>
+            LogPage
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.LogPage.InitializeComponent">
+            <summary>
+            InitializeComponent
             </summary>
         </member>
         <member name="T:RevitTemplate.Commands.CiclopeCommand">
@@ -527,12 +608,27 @@
             </summary>
             <param name="message">The message to log.</param>
         </member>
+        <member name="T:RevitTemplate.Utils.LogServiceTest">
+            <summary>
+            Classe de teste para demonstrar o uso do LogService
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Utils.LogServiceTest.RunTests">
+            <summary>
+            Executa testes do LogService para verificar funcionalidade
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Utils.LogServiceTest.SimulateRevitOperation">
+            <summary>
+            Simula logs de uma operação típica do Revit
+            </summary>
+        </member>
         <member name="T:RevitTemplate.RevitApp">
             <summary>
             Main application class that implements IExternalApplication.
             </summary>
         </member>
-        <member name="P:RevitTemplate.RevitApp.Instance">
+        <member name="F:RevitTemplate.RevitApp.HttpClient">
             <summary>
             Gets the singleton instance of the application.
             </summary>
@@ -550,6 +646,22 @@
             </summary>
             <param name="application">The UI controlled application.</param>
             <returns>The result of the shutdown.</returns>
+        </member>
+        <member name="M:RevitTemplate.RevitApp.ConfigureHttpClientWithToken">
+            <summary>
+            Configura o HttpClient com o token JWT se disponível
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.RevitApp.SetAuthorizationToken(System.String)">
+            <summary>
+            Define o token de autorização no HttpClient
+            </summary>
+            <param name="token">Token JWT para autorização</param>
+        </member>
+        <member name="M:RevitTemplate.RevitApp.ClearAuthorizationToken">
+            <summary>
+            Remove o token de autorização do HttpClient
+            </summary>
         </member>
         <member name="T:RevitTemplate.Properties.Resources">
             <summary>

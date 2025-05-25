@@ -7,7 +7,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using RevitTemplate.Core.Services;
 using RevitTemplate.Utils;
-using RevitTemplate.ViewModels;
 using RevitTemplate.Models;
 
 namespace RevitTemplate.Infrastructure

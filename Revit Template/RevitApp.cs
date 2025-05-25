@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Media.Imaging;
@@ -9,7 +10,7 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using RevitTemplate.Core.Services;
 using RevitTemplate.Infrastructure;
-using RevitTemplate.UI.ViewModels;
+using RevitTemplate.Services;
 using RevitTemplate.UI.Views;
 using RevitTemplate.Utils;
 
@@ -26,6 +27,7 @@ namespace RevitTemplate
         /// <summary>
         /// Gets the singleton instance of the application.
         /// </summary>
+        public HttpClient HttpClient;
         public static RevitApp Instance { get; private set; }
         public static AddCiclopeParametersEventHandler CiclopeParametersEventHandler { get; private set; }
 
@@ -47,10 +49,24 @@ namespace RevitTemplate
 
                 // Create the ribbon panel
                 RibbonPanel panel = CreateRibbonPanel(application);
+
                 
                 // Add buttons to the ribbon panel
                 AddRibbonButtons(panel);
+
+                HttpClient = new HttpClient(new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                })
+                {
+                    BaseAddress = new Uri("https://localhost:6102/api/")
+                };
+                
+                // Configura automaticamente o token se existir um válido
+                ConfigureHttpClientWithToken();
+                
                 CiclopeParametersEventHandler = new AddCiclopeParametersEventHandler();
+
                 return Result.Succeeded;
             }
             catch (Exception ex)
@@ -200,6 +216,70 @@ namespace RevitTemplate
         {
             // This method is called when Revit is closing
             // You can use it to clean up resources
+        }
+        
+        /// <summary>
+        /// Configura o HttpClient com o token JWT se disponível
+        /// </summary>
+        public void ConfigureHttpClientWithToken()
+        {
+            try
+            {
+                string token = TokenService.GetCurrentToken();
+                if (!string.IsNullOrEmpty(token))
+                {
+                    SetAuthorizationToken(token);
+                    LogService.LogInfo("HttpClient configurado com token JWT existente");
+                }
+                else
+                {
+                    LogService.LogInfo("Nenhum token JWT válido encontrado para configurar o HttpClient");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogService.LogError($"Erro ao configurar token no HttpClient: {ex.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// Define o token de autorização no HttpClient
+        /// </summary>
+        /// <param name="token">Token JWT para autorização</param>
+        public void SetAuthorizationToken(string token)
+        {
+            try
+            {
+                if (HttpClient != null && !string.IsNullOrEmpty(token))
+                {
+                    HttpClient.DefaultRequestHeaders.Remove("Authorization");
+                    HttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+                    LogService.LogInfo("Token de autorização configurado no HttpClient");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogService.LogError($"Erro ao definir token de autorização: {ex.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// Remove o token de autorização do HttpClient
+        /// </summary>
+        public void ClearAuthorizationToken()
+        {
+            try
+            {
+                if (HttpClient != null)
+                {
+                    HttpClient.DefaultRequestHeaders.Remove("Authorization");
+                    LogService.LogInfo("Token de autorização removido do HttpClient");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogService.LogError($"Erro ao remover token de autorização: {ex.Message}");
+            }
         }
     }
 }
