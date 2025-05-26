@@ -7,6 +7,9 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.AspNetCore.SignalR.Client;
 using RevitTemplate.Services;
+using System.Net.WebSockets;
+using Microsoft.Extensions.Options;
+
 
 namespace RevitTemplate.UI.Views.Pages
 {
@@ -78,46 +81,51 @@ namespace RevitTemplate.UI.Views.Pages
         {
             try
             {
-
                 if (string.IsNullOrWhiteSpace(token)) return;
 
                 _hubConnection = CriarHubConnection(token);
-                RegistrarHandlers();
 
+                _hubConnection.On<string>("RevitProjetoElementos", async (msg) => LogService.LogInfo($"Solicitação dos Elementos do projeto recebida."));
                 await _hubConnection.StartAsync();
 
-                if (
-                _hubConnection.State == HubConnectionState.Connected)
+                if (_hubConnection.State == HubConnectionState.Connected)
                 {
                     LogService.LogInfo($"Plugin revit conectado ao servidor CICLOPE");
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                LogService.LogWarning($"Plugin revit conectado ao servidor CICLOPE");
+                LogService.LogError($"Erro ao conectar ao hub: {ex.Message}");
             }
         }
+
         private HubConnection CriarHubConnection(string token)
         {
-            return new HubConnectionBuilder()
-                .WithUrl("https://localhost:6102/orseHub", options =>
+            try
+            {
+                var httpClientHandler = new HttpClientHandler
                 {
-                    options.AccessTokenProvider = () => Task.FromResult(token);
-                    options.HttpMessageHandlerFactory = _ => new HttpClientHandler
-                    {
-                        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-                    };
-                })
-                .WithAutomaticReconnect()
-                .Build();
-        }
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                };
 
-        private void RegistrarHandlers()
-        {
-            return;
+                var httpClient = new HttpClient(httpClientHandler);
+                httpClient.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                return new HubConnectionBuilder()
+                    .WithUrl("https://localhost:6102/revitHub", options =>
+                    {
+                        options.HttpMessageHandlerFactory = _ => httpClientHandler;
+                        options.Headers.Add("Authorization", $"Bearer {token}");
+                    })
+                    .WithAutomaticReconnect()
+                    .Build();
+            }
+            catch (Exception ex)
+            {
+                LogService.LogError($"Erro ao criar conexão do hub: {ex.Message}");
+                throw;
+            }
         }
 
         private void OnLogAdded(object sender, LogEntry logEntry)
