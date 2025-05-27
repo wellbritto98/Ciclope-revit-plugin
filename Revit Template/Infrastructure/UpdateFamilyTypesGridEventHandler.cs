@@ -16,13 +16,14 @@ namespace RevitTemplate.Infrastructure
 
         public UpdateFamilyTypesGridEventHandler()
         {
-        }
-
-        protected override void Execute(UIApplication app, object parameter)
+        }        protected override void Execute(UIApplication app, object parameter)
         {
             try
             {
-                IRevitDocumentService service = new RevitDocumentService(app);
+                // Set the UIApplication in the singleton instance
+                UIApplicationProvider.Instance.SetUIApplication(app);
+                
+                IRevitDocumentService service = new RevitDocumentService(UIApplicationProvider.Instance);
                 var families = service.GetAllFamilyInstances();
                 
                 Logger.LogMessage("Tabela de tipos de família atualizada.");

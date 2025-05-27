@@ -66,18 +66,6 @@
             Obtém o ElementId do tipo de vista 3D padrão
             </summary>
         </member>
-        <member name="T:RevitTemplate.Infrastructure.UpdateElementsGridEventHandler">
-            <summary>
-            EventHandler para atualizar o grid de elementos no ViewModel
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.Infrastructure.UpdateElementsGridEventHandler.Execute(Autodesk.Revit.UI.UIApplication,System.Object)">
-            <summary>
-            Executa a busca de elementos do documento Revit e atualiza o ViewModel
-            </summary>
-            <param name="app">A aplicação Revit</param>
-            <param name="parameter">Parâmetro adicional (não utilizado)</param>
-        </member>
         <member name="T:RevitTemplate.Infrastructure.AddCiclopeParametersEventHandler">
             <summary>
             Event handler to add CICLOPE shared parameters to specific elements in the project.
@@ -209,6 +197,18 @@
             <summary>
             Remove o token de autorização do HttpClient
             </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.HubService.GetDocumentInfoAsync">
+            <summary>
+            Exemplo de como obter informações do documento Revit
+            </summary>
+            <returns>Informações do documento em formato JSON</returns>
+        </member>
+        <member name="M:RevitTemplate.Services.HubService.GetSpecificElementsAsync">
+            <summary>
+            Exemplo de como obter apenas elementos específicos
+            </summary>
+            <returns>Lista de elementos específicos</returns>
         </member>
         <member name="T:RevitTemplate.Services.TokenService">
             <summary>
@@ -441,16 +441,59 @@
             </summary>
             <returns>List of ElementInfo objects containing grouped element data</returns>
         </member>
+        <member name="T:RevitTemplate.Core.Services.IUIApplicationProvider">
+            <summary>
+            Interface for providing UIApplication context.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Core.Services.IUIApplicationProvider.UIApplication">
+            <summary>
+            Gets the current UIApplication instance.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IUIApplicationProvider.SetUIApplication(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Sets the current UIApplication instance.
+            </summary>
+            <param name="uiApplication">The UIApplication to set.</param>
+        </member>
+        <member name="T:RevitTemplate.Core.Services.UIApplicationProvider">
+            <summary>
+            Implementation of IUIApplicationProvider for providing UIApplication context.
+            This is a singleton to ensure the same instance is used throughout the application.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Core.Services.UIApplicationProvider.Instance">
+            <summary>
+            Gets the singleton instance of UIApplicationProvider.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.Core.Services.UIApplicationProvider.UIApplication">
+            <summary>
+            Gets the current UIApplication instance.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.UIApplicationProvider.#ctor">
+            <summary>
+            Private constructor to prevent direct instantiation.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.UIApplicationProvider.SetUIApplication(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Sets the current UIApplication instance.
+            </summary>
+            <param name="uiApplication">The UIApplication to set.</param>
+        </member>
         <member name="T:RevitTemplate.Core.Services.RevitDocumentService">
             <summary>
             Implementation of the IRevitDocumentService interface.
             </summary>
         </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.#ctor(Autodesk.Revit.UI.UIApplication)">
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.#ctor(RevitTemplate.Core.Services.IUIApplicationProvider)">
             <summary>
             Initializes a new instance of the RevitDocumentService class.
             </summary>
-            <param name="uiApplication">The Revit UI application.</param>
+            <param name="uiApplicationProvider">The UI application provider.</param>
         </member>
         <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetCurrentDocument">
             <summary>

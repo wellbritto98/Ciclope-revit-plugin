@@ -105,8 +105,7 @@ namespace RevitTemplate
                 Logger.HandleError(ex);
                 return Result.Failed;
             }
-        }
-        /// <summary>
+        }        /// <summary>
         /// Shows the CICLOPE window using dependency injection.
         /// </summary>
         /// <param name="uiApplication">The Revit UI application.</param>
@@ -114,6 +113,9 @@ namespace RevitTemplate
         {
             try
             {
+                // Set the UIApplication in the singleton provider so services can access it
+                UIApplicationProvider.Instance.SetUIApplication(uiApplication);
+                
                 var tokenService = _serviceProvider.GetRequiredService<TokenService>();
                 _window = new CiclopeWindow(tokenService,_serviceProvider);
                 _window.Show();

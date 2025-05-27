@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using RevitTemplate.Core.Services;
 using RevitTemplate.Infrastructure;
-using RevitTemplate.Providers;
 using RevitTemplate.Services;
 using RevitTemplate.UI.Views;
 using RevitTemplate.UI.Views.Pages;
@@ -19,17 +18,13 @@ namespace RevitTemplate.Services
         /// </summary>
         /// <param name="services">The service collection to configure.</param>
         public static void ConfigureServices(IServiceCollection services)
-        {
-
-            services.AddSingleton<RevitApp>(); // Ensure RevitApp is registered as a singleton
-            services.AddSingleton<RevitUiApplicationProvider>();
+        {            services.AddSingleton<RevitApp>(); // Ensure RevitApp is registered as a singleton
+            
+            // UI Application Provider - use singleton instance
+            services.AddSingleton<IUIApplicationProvider>(provider => UIApplicationProvider.Instance);
+            
             // Core Services
-            services.AddTransient<IRevitDocumentService>(provider => 
-            {
-                // UIApplication will be provided at runtime when needed
-                // For now, we'll create a service that can work without it
-                return new RevitDocumentService(null);
-            });
+            services.AddTransient<IRevitDocumentService, RevitDocumentService>();
             services.AddSingleton<TokenService>();
             services.AddTransient<FamilyParameterService>();
             services.AddSingleton<WorkerServiceProxy>();
@@ -38,7 +33,6 @@ namespace RevitTemplate.Services
             services.AddSingleton<AddCiclopeParametersEventHandler>();
             services.AddSingleton<FillCiclopeParametersEventHandler>();
             services.AddSingleton<SelectElementsEventHandler>();
-            services.AddSingleton<UpdateElementsGridEventHandler>();
             services.AddSingleton<UpdateFamilyTypesGridEventHandler>();
 
             // HTTP Client

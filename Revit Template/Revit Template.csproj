@@ -121,11 +121,12 @@
     <Compile Include="Models\TokenData.cs" />
     <Compile Include="Services\CompressionService.cs" />
     <Compile Include="Services\DependencyInjectionConfig.cs" />
-    <Compile Include="Services\HttpService.cs" />
-    <Compile Include="Services\HubService.cs" />
+    <Compile Include="Services\HttpService.cs" />    <Compile Include="Services\HubService.cs" />
     <Compile Include="Services\TokenService.cs" />
     <Compile Include="Services\FamilyParameterService.cs" />
     <Compile Include="Services\IRevitDocumentService.cs" />
+    <Compile Include="Services\IUIApplicationProvider.cs" />
+    <Compile Include="Services\UIApplicationProvider.cs" />
     <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\LoggingService.cs" />
     <Compile Include="Services\NavigationService.cs" />

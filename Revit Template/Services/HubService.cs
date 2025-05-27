@@ -25,22 +25,41 @@ namespace RevitTemplate.Services
         {
             _workerServiceProxy = workerServiceProxy;
             _revitDocumentService = revitDocumentService;
-        }
-
-        // Método para inicializar a conexão
+        }        // Método para inicializar a conexão
         public void Initialize(string hubUrl, string token)
         {
             try
             {
-                _workerServiceProxy.On<string>("RevitProjetoElementos", (msg) =>
+                _workerServiceProxy.On<string>("RevitProjetoElementos", async (msg) =>
                 {
                     LogService.LogInfo($"Solicitação dos Elementos do projeto recebida.");
-                    var elements = _revitDocumentService.GetElementInfoAsync();
-                    //serialize in a json
-                    string elementsJson = JsonConvert.SerializeObject(elements);
+                    
+                    try
+                    {
+                        // Check if UIApplication is available
+                        if (UIApplicationProvider.Instance.UIApplication == null)
+                        {
+                            LogService.LogError("UIApplication não está disponível. Certifique-se de que a aplicação Revit está ativa.");
+                            _workerServiceProxy.Invoke("RevitProjetoElementosResponse", 
+                                JsonConvert.SerializeObject(new { error = "UIApplication não disponível" }));
+                            return;
+                        }
 
-                    _workerServiceProxy.Invoke("RevitProjetoElementosResponse", elementsJson);
+                        var elements = await _revitDocumentService.GetElementInfoAsync();
+                        
+                        // Serialize elements to JSON
+                        string elementsJson = JsonConvert.SerializeObject(elements);
 
+                        _workerServiceProxy.Invoke("RevitProjetoElementosResponse", elementsJson);
+                        
+                        LogService.LogInfo($"Enviados {elements.Count} elementos para o SignalR hub.");
+                    }
+                    catch (Exception ex)
+                    {
+                        LogService.LogError($"Erro ao obter elementos do projeto: {ex.Message}");
+                        _workerServiceProxy.Invoke("RevitProjetoElementosResponse", 
+                            JsonConvert.SerializeObject(new { error = ex.Message }));
+                    }
                 });
             }
             catch (Exception ex)
@@ -86,7 +105,84 @@ namespace RevitTemplate.Services
 
         }
 
-        
+        /// <summary>
+        /// Exemplo de como obter informações do documento Revit
+        /// </summary>
+        /// <returns>Informações do documento em formato JSON</returns>
+        public async Task<string> GetDocumentInfoAsync()
+        {
+            try
+            {
+                // Check if UIApplication is available
+                if (UIApplicationProvider.Instance.UIApplication == null)
+                {
+                    throw new InvalidOperationException("UIApplication não está disponível. Execute o comando a partir do Revit.");
+                }
+
+                // Get basic document info
+                var docInfo = _revitDocumentService.GetDocumentInfo();
+                
+                // Get elements info
+                var elements = await _revitDocumentService.GetElementInfoAsync();
+                
+                // Get family instances
+                var familyInstances = _revitDocumentService.GetAllFamilyInstances();
+                
+                // Get sheets
+                var sheets = await _revitDocumentService.GetSheetsAsync();
+                
+                // Get wall info
+                var wallInfo = await _revitDocumentService.GetWallInfoAsync();
+
+                var result = new
+                {
+                    DocumentInfo = docInfo,
+                    ElementsCount = elements.Count,
+                    Elements = elements.Take(5), // Apenas os primeiros 5 para exemplo
+                    FamilyInstancesCount = familyInstances.Count,
+                    SheetsCount = sheets.Count,
+                    WallInfo = wallInfo
+                };
+
+                return JsonConvert.SerializeObject(result, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                LogService.LogError($"Erro ao obter informações do documento: {ex.Message}");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Exemplo de como obter apenas elementos específicos
+        /// </summary>
+        /// <returns>Lista de elementos específicos</returns>
+        public async Task<string> GetSpecificElementsAsync()
+        {
+            try
+            {
+                // Check if UIApplication is available
+                if (UIApplicationProvider.Instance.UIApplication == null)
+                {
+                    throw new InvalidOperationException("UIApplication não está disponível.");
+                }
+
+                var elements = await _revitDocumentService.GetElementInfoAsync();
+                
+                // Filtrar apenas elementos de parede (exemplo)
+                var wallElements = elements.Where(e => e.Category != null && 
+                    e.Category.ToLower().Contains("wall")).ToList();
+
+                LogService.LogInfo($"Encontrados {wallElements.Count} elementos de parede.");
+
+                return JsonConvert.SerializeObject(wallElements, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                LogService.LogError($"Erro ao obter elementos específicos: {ex.Message}");
+                throw;
+            }
+        }
 
         public void Dispose()
         {

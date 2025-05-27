@@ -9,30 +9,30 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace RevitTemplate.Core.Services
-{
-    /// <summary>
+{    /// <summary>
     /// Implementation of the IRevitDocumentService interface.
     /// </summary>
     public class RevitDocumentService : IRevitDocumentService
     {
-        private readonly UIApplication _uiApplication;
+        private readonly IUIApplicationProvider _uiApplicationProvider;
 
         /// <summary>
         /// Initializes a new instance of the RevitDocumentService class.
         /// </summary>
-        /// <param name="uiApplication">The Revit UI application.</param>
-        public RevitDocumentService(UIApplication uiApplication)
+        /// <param name="uiApplicationProvider">The UI application provider.</param>
+        public RevitDocumentService(IUIApplicationProvider uiApplicationProvider)
         {
-            _uiApplication = uiApplication ?? throw new ArgumentNullException(nameof(uiApplication));
-        }
-
-        /// <summary>
+            _uiApplicationProvider = uiApplicationProvider ?? throw new ArgumentNullException(nameof(uiApplicationProvider));
+        }        /// <summary>
         /// Gets the current Revit document.
         /// </summary>
         /// <returns>The current Revit document.</returns>
         public Document GetCurrentDocument()
         {
-            return _uiApplication.ActiveUIDocument.Document;
+            if (_uiApplicationProvider.UIApplication == null)
+                throw new InvalidOperationException("UIApplication is not available. Make sure the UIApplicationProvider is properly initialized.");
+            
+            return _uiApplicationProvider.UIApplication.ActiveUIDocument.Document;
         }
 
         /// <summary>
