@@ -5,23 +5,27 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.AspNetCore.SignalR.Client;
 using RevitTemplate.Services;
 using System.Net.WebSockets;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace RevitTemplate.UI.Views.Pages
-{
-    /// <summary>
+{    /// <summary>
     /// Página de console de logs
     /// </summary>
     public partial class LogPage : Page, INotifyPropertyChanged
     {
         private ObservableCollection<LogEntry> _logs;
         private int _logCount;
-        private HubConnection _hubConnection;
+        private readonly TokenService _tokenService;
+        private readonly HttpService _httpService;
+        private readonly HubService _hubService;
+        private IServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// Gets or sets the collection of logs.
+        /// </summary>
         public ObservableCollection<LogEntry> Logs
         {
             get => _logs;
@@ -33,6 +37,9 @@ namespace RevitTemplate.UI.Views.Pages
             }
         }
 
+        /// <summary>
+        /// Gets or sets the log count.
+        /// </summary>
         public int LogCount
         {
             get => _logCount;
@@ -43,8 +50,17 @@ namespace RevitTemplate.UI.Views.Pages
             }
         }
 
-        public LogPage()
+        /// <summary>
+        /// Initializes a new instance of the LogPage class.
+        /// </summary>
+        /// <param name="tokenService">The token service for managing authentication tokens.</param>
+        public LogPage(TokenService tokenService, HttpService httpService, HubService hubService, IServiceProvider serviceProvider)
         {
+            _tokenService = tokenService;
+            _httpService = httpService;
+            _hubService = hubService;
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+
             InitializeComponent();
             DataContext = this;
 
@@ -57,7 +73,7 @@ namespace RevitTemplate.UI.Views.Pages
             LogService.LogInfo("Autenticado com Sucesso.");
 
             // Exibe informações sobre o token atual
-            string tokenInfo = TokenService.GetTokenInfo();
+            string tokenInfo = _tokenService?.GetTokenInfo() ?? "Token não disponível";
             LogService.LogInfo($"Token Status: {tokenInfo}");
 
             LogService.LogDebug("LogPage inicializada.");
@@ -67,66 +83,23 @@ namespace RevitTemplate.UI.Views.Pages
 
             UpdateLogCount();
         }
-
         private void LogPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var tokenData = TokenService.GetSavedToken();
-            var token = tokenData.Token;
+            var tokenData = _tokenService?.GetSavedToken();
+            var token = tokenData?.Token;
+
+            // Inicializar o HubService com os parâmetros necessários
+            _hubService.Initialize("https://localhost:6102/revitHub/", token);
+
             //conectar no hub
-            _ = ConectarAoHubAsync(token);
+            Task.WhenAll(_hubService.ConectarAoHubAsync(token));
 
+            _ = _hubService.EnviarMensagemAsync("Plugin Revit conectado ao servidor CICLOPE");
+            
         }
 
-        private async Task ConectarAoHubAsync(string token)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(token)) return;
+       
 
-                _hubConnection = CriarHubConnection(token);
-
-                _hubConnection.On<string>("RevitProjetoElementos", async (msg) => LogService.LogInfo($"Solicitação dos Elementos do projeto recebida."));
-                await _hubConnection.StartAsync();
-
-                if (_hubConnection.State == HubConnectionState.Connected)
-                {
-                    LogService.LogInfo($"Plugin revit conectado ao servidor CICLOPE");
-                }
-            }
-            catch (Exception ex)
-            {
-                LogService.LogError($"Erro ao conectar ao hub: {ex.Message}");
-            }
-        }
-
-        private HubConnection CriarHubConnection(string token)
-        {
-            try
-            {
-                var httpClientHandler = new HttpClientHandler
-                {
-                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-                };
-
-                var httpClient = new HttpClient(httpClientHandler);
-                httpClient.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-                return new HubConnectionBuilder()
-                    .WithUrl("https://localhost:6102/revitHub", options =>
-                    {
-                        options.HttpMessageHandlerFactory = _ => httpClientHandler;
-                        options.Headers.Add("Authorization", $"Bearer {token}");
-                    })
-                    .WithAutomaticReconnect()
-                    .Build();
-            }
-            catch (Exception ex)
-            {
-                LogService.LogError($"Erro ao criar conexão do hub: {ex.Message}");
-                throw;
-            }
-        }
 
         private void OnLogAdded(object sender, LogEntry logEntry)
         {
@@ -156,9 +129,8 @@ namespace RevitTemplate.UI.Views.Pages
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                // Remove o token salvo
-                bool tokenCleared = TokenService.ClearToken();
+            {                // Remove o token salvo
+                bool tokenCleared = _tokenService?.ClearToken() ?? false;
 
                 if (tokenCleared)
                 {
@@ -169,15 +141,13 @@ namespace RevitTemplate.UI.Views.Pages
                     LogService.LogWarning("Logout realizado, mas houve problema ao remover o token");
                 }
 
-                // Remove o token do HttpClient também
-                if (RevitApp.Instance != null)
-                {
-                    RevitApp.Instance.ClearAuthorizationToken();
+
+                    _httpService.ClearAuthorizationToken();
                     LogService.LogInfo("Token removido do HttpClient");
-                }
+
 
                 // Navega de volta para a página de login
-                if (!NavService.NavigateFromControl(this, new LoginPage()))
+                if (!NavService.NavigateFromControl(this, new LoginPage(_httpService, _tokenService, _serviceProvider)))
                 {
                     LogService.LogError("Falha na navegação para a página de login após logout");
                 }

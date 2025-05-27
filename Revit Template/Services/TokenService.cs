@@ -11,7 +11,7 @@ namespace RevitTemplate.Services
     /// <summary>
     /// Serviço para gerenciamento de tokens JWT com persistência segura em arquivo JSON
     /// </summary>
-    public static class TokenService
+    public class TokenService
     {
         private const string EncryptionKey = "RevitTemplate2025Key!@#$"; // Chave para criptografia
         private const string TokenFileName = "token.json";
@@ -19,7 +19,7 @@ namespace RevitTemplate.Services
         /// <summary>
         /// Obtém o diretório onde está localizada a DLL
         /// </summary>
-        private static string GetDllDirectory()
+        private  string GetDllDirectory()
         {
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
             return Path.GetDirectoryName(assemblyLocation);
@@ -28,7 +28,7 @@ namespace RevitTemplate.Services
         /// <summary>
         /// Obtém o caminho completo do arquivo de token
         /// </summary>
-        private static string GetTokenFilePath()
+        private  string GetTokenFilePath()
         {
             return Path.Combine(GetDllDirectory(), TokenFileName);
         }
@@ -36,7 +36,7 @@ namespace RevitTemplate.Services
         /// Salva o token data de forma persistente e segura em arquivo JSON
         /// </summary>
         /// <param name="tokenData">Dados do token para salvar</param>
-        public static bool SaveToken(TokenData tokenData)
+        public  bool SaveToken(TokenData tokenData)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace RevitTemplate.Services
         /// Recupera o token salvo do arquivo JSON, se ainda for válido
         /// </summary>
         /// <returns>TokenData se válido, null caso contrário</returns>
-        public static TokenData GetSavedToken()
+        public  TokenData GetSavedToken()
         {
             try
             {
@@ -126,13 +126,13 @@ namespace RevitTemplate.Services
         /// Verifica se existe um token válido salvo
         /// </summary>
         /// <returns>True se existe um token válido</returns>
-        public static bool HasValidToken()
+        public  bool HasValidToken()
         {
             return GetSavedToken() != null;
         }        /// <summary>
         /// Remove o arquivo de token
         /// </summary>
-        public static bool ClearToken()
+        public  bool ClearToken()
         {
             try
             {
@@ -159,7 +159,7 @@ namespace RevitTemplate.Services
         /// Obtém o token JWT atual se válido
         /// </summary>
         /// <returns>String do token JWT ou null se inválido</returns>
-        public static string GetCurrentToken()
+        public  string GetCurrentToken()
         {
             var tokenData = GetSavedToken();
             return tokenData?.Token;
@@ -169,7 +169,7 @@ namespace RevitTemplate.Services
         /// Obtém informações sobre o token atual
         /// </summary>
         /// <returns>String com informações do token</returns>
-        public static string GetTokenInfo()
+        public  string GetTokenInfo()
         {
             var token = GetSavedToken();
             if (token == null)
@@ -184,7 +184,7 @@ namespace RevitTemplate.Services
         #region Métodos de Criptografia Simples        /// <summary>
         /// Criptografa uma string usando AES com IV aleatório
         /// </summary>
-        private static string EncryptString(string plainText)
+        private  string EncryptString(string plainText)
         {
             try
             {
@@ -226,7 +226,7 @@ namespace RevitTemplate.Services
         /// <summary>
         /// Descriptografa uma string usando AES
         /// </summary>
-        private static string DecryptString(string cipherText)
+        private  string DecryptString(string cipherText)
         {
             try
             {

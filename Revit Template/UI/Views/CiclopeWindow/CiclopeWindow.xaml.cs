@@ -3,19 +3,26 @@ using System;
 using System.Data.Linq;
 using RevitTemplate.UI.Views.Pages;
 using RevitTemplate.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Wpf.Ui.Controls;
 
 namespace RevitTemplate.UI.Views
-{
-    /// <summary>
+{    /// <summary>
     /// Interaction logic for CiclopeWindow.xaml
     /// </summary>
-    public partial class CiclopeWindow
+    public partial class CiclopeWindow : FluentWindow
     {
+        private readonly TokenService _tokenService;
+        private readonly IServiceProvider _serviceProvider;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CiclopeWindow"/> class.
         /// </summary>
-        public CiclopeWindow()
+        public CiclopeWindow(TokenService tokenService, IServiceProvider serviceProvider)
         {
+            _tokenService = tokenService ;
+            _serviceProvider = serviceProvider;
+            
             InitializeComponent();
             Wpf.Ui.Appearance.SystemThemeWatcher.Watch(this);
             
@@ -30,13 +37,14 @@ namespace RevitTemplate.UI.Views
             
             // Desregistra quando a janela é fechada
             this.Closed += CiclopeWindow_Closed;
-        }
-        private bool CheckSavedToken()
+        }        private bool CheckSavedToken()
         {
             try
             {
-                var savedToken = TokenService.GetSavedToken();
-                if (savedToken != null && TokenService.HasValidToken())
+                if (_tokenService == null) return false;
+                
+                var savedToken = _tokenService.GetSavedToken();
+                if (savedToken != null && savedToken.Authenticated && savedToken.Expiration > DateTime.Now)
                 {
                     return true;
                 }
@@ -50,16 +58,19 @@ namespace RevitTemplate.UI.Views
                 LogService.LogError($"Erro ao verificar token salvo: {ex.Message}");
                 return false;
             }
-        }
-        private void CiclopeWindow_Loaded(object sender, RoutedEventArgs e)
+        }        private void CiclopeWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            var httpService = _serviceProvider.GetRequiredService<HttpService>();
+            var hubService = _serviceProvider.GetRequiredService<HubService>();
             // Define a página inicial como LoginPage
-            if(CheckSavedToken())
+            if (CheckSavedToken())
             {
-                ContentFrame.Navigate(new LogPage());
+                var logPage = new LogPage(_tokenService, httpService, hubService, _serviceProvider);
+                ContentFrame.Navigate(logPage);
             }
             else { 
-                ContentFrame.Navigate(new LoginPage());
+                var loginPage = new LoginPage(httpService, _tokenService, _serviceProvider);
+                ContentFrame.Navigate(loginPage);
             }
         }
 
@@ -67,6 +78,8 @@ namespace RevitTemplate.UI.Views
         {
             // Desregistra a janela do NavigationService
             NavService.Unregister();
+            var hub = _serviceProvider.GetRequiredService<HubService>();
+            hub.Dispose();
         }
 
         private void ContentFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -74,7 +87,10 @@ namespace RevitTemplate.UI.Views
             // Você pode adicionar lógica aqui quando a navegação ocorrer
         }
         
-        // Método helper para navegar para outras páginas
+        /// <summary>
+        /// Helper method to navigate to other pages.
+        /// </summary>
+        /// <param name="page">The page to navigate to.</param>
         public void NavigateToPage(object page)
         {
             ContentFrame.Navigate(page);

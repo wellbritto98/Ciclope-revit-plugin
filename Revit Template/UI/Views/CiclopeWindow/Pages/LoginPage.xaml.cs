@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RevitTemplate.Models;
 using RevitTemplate.Services;
-using Wpf.Ui.Controls; // Necessário para PasswordBox e Button do Wpf.Ui
 using System.ComponentModel;
+using Microsoft.Extensions.DependencyInjection;
+using WpfPasswordBox = Wpf.Ui.Controls.PasswordBox;
 
 namespace RevitTemplate.UI.Views.Pages
-{
-    /// <summary>
+{    /// <summary>
     /// Página de login com email e senha.
     /// </summary>
     public partial class LoginPage : Page, INotifyPropertyChanged
     {
         private bool _isLoading = false;
-        
+        private readonly HttpService _httpService;
+        private readonly TokenService _tokenService;
+        private IServiceProvider _serviceProvider;
+
         public LoginModel LoginModel { get; set; } = new LoginModel();
         public string ErrorMessage { get; set; }
         
@@ -40,11 +43,19 @@ namespace RevitTemplate.UI.Views.Pages
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }        public LoginPage()
+        }        
+        /// <summary>
+        /// Initializes a new instance of the LoginPage class.
+        /// </summary>
+        /// <param name="httpClient">The HTTP client for API calls.</param>
+        /// <param name="tokenService">The token service for managing authentication tokens.</param>
+        public LoginPage(HttpService httpService, TokenService tokenService, IServiceProvider serviceProvider)
         {
+            _httpService = httpService;
+            _tokenService = tokenService;
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
             InitializeComponent();
             DataContext = this;
-
         }
 
 
@@ -55,9 +66,9 @@ namespace RevitTemplate.UI.Views.Pages
             ErrorMessage = string.Empty;
             
             try
-            {
-                // Sincroniza a senha do PasswordBox com o modelo
-                LoginModel.Senha = PasswordBox.Password;
+            {                // Sincroniza a senha do PasswordBox com o modelo
+                var passwordBox = this.FindName("PasswordBox") as Wpf.Ui.Controls.PasswordBox;
+                LoginModel.Senha = passwordBox?.Password ?? string.Empty;
                 var tokenData = await OnLoginSubmit();
 
                 if (!tokenData.Authenticated)
@@ -70,7 +81,7 @@ namespace RevitTemplate.UI.Views.Pages
                     ErrorMessage = string.Empty;
                     
                     // Salva o token para uso futuro
-                    bool tokenSaved = TokenService.SaveToken(tokenData);
+                    bool tokenSaved = _tokenService?.SaveToken(tokenData) ?? false;
                     if (tokenSaved)
                     {
                         LogService.LogInfo("Token salvo com sucesso para sessões futuras");
@@ -80,18 +91,18 @@ namespace RevitTemplate.UI.Views.Pages
                         LogService.LogWarning("Falha ao salvar token - login funcionará apenas nesta sessão");
                     }
                     
-                    // Configura o token no HttpClient para requisições autenticadas
-                    if (RevitApp.Instance != null && !string.IsNullOrEmpty(tokenData.Token))
-                    {
-                        RevitApp.Instance.SetAuthorizationToken(tokenData.Token);
+
+                        _httpService.SetAuthorizationToken(tokenData.Token);
                         LogService.LogInfo("Token configurado no HttpClient para requisições autenticadas");
-                    }
+                    
                     
                     // Log do sucesso do login
                     LogService.LogInfo($"Login realizado com sucesso para o usuário: {LoginModel.Email}");
                     
                     // Navega para a LogPage após login bem-sucedido usando o NavigationService
-                    if (!NavService.NavigateFromControl(this, new LogPage()))
+                    var workerServiceProxy = _serviceProvider.GetRequiredService<WorkerServiceProxy>();
+                    var hubService = _serviceProvider.GetRequiredService<HubService>();
+                    if (!NavService.NavigateFromControl(this, new LogPage(_tokenService, _httpService, hubService, _serviceProvider)))
                     {
                         LogService.LogError("Falha na navegação para a página de logs");
                     }
@@ -105,8 +116,10 @@ namespace RevitTemplate.UI.Views.Pages
                 // Força atualização do DataContext para refletir mudanças nas propriedades
                 OnPropertyChanged(nameof(ErrorMessage));
             }
-        }
-
+        }        /// <summary>
+        /// Submits the login form and returns authentication token data.
+        /// </summary>
+        /// <returns>The authentication token data.</returns>
         public async Task<TokenData> OnLoginSubmit()
         {
             string errorMessage = "Ocorreu um erro inesperado.";
@@ -117,7 +130,7 @@ namespace RevitTemplate.UI.Views.Pages
                 {
                     var json = JsonConvert.SerializeObject(LoginModel);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await RevitApp.Instance.HttpClient.PostAsync("Autoriza/Login", content);
+                    response = await _httpService.HttpClient.PostAsync("Autoriza/Login", content);
                 }
                 catch (HttpRequestException)
                 {

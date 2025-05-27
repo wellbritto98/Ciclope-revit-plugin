@@ -5,6 +5,7 @@ using RevitTemplate.Utils;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace RevitTemplate.Infrastructure
 {
@@ -30,9 +31,7 @@ namespace RevitTemplate.Infrastructure
                     throw new FileNotFoundException(
                         $"O arquivo de parâmetros compartilhados não foi encontrado: '{sharedParameterFilePath}'. " +
                         "Verifique o caminho e tente novamente.");
-                }
-
-                var doc = app.ActiveUIDocument.Document;
+                }                var doc = app.ActiveUIDocument.Document;
                 var service = new FamilyParameterService(doc, app.Application, sharedParameterFilePath);
                 
                 if (elementIds != null && elementIds.Count > 0)

@@ -6,12 +6,15 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
+using Microsoft.Extensions.DependencyInjection;
 using RevitTemplate.Core.Services;
 using RevitTemplate.Infrastructure;
 using RevitTemplate.Services;
 using RevitTemplate.UI.Views;
+using RevitTemplate.UI.Views.Pages;
 using RevitTemplate.Utils;
 
 namespace RevitTemplate
@@ -21,15 +24,18 @@ namespace RevitTemplate
     /// </summary>
     public class RevitApp : IExternalApplication
     {
+        public static RevitApp Instance { get; set; } 
+        private IServiceProvider _serviceProvider;
         private CiclopeWindow _window;
-        private Thread _uiThread;
-
+        private Thread _uiThread;        
         /// <summary>
-        /// Gets the singleton instance of the application.
-        /// </summary>
-        public HttpClient HttpClient;
-        public static RevitApp Instance { get; private set; }
+
         public static AddCiclopeParametersEventHandler CiclopeParametersEventHandler { get; private set; }
+        
+        /// <summary>
+        /// Gets the service provider for dependency injection.
+        /// </summary>
+        public IServiceProvider ServiceProvider => _serviceProvider;
 
         /// <summary>
         /// Called when Revit starts up.
@@ -40,8 +46,12 @@ namespace RevitTemplate
         {
             try
             {
-                // Set the static instance
                 Instance = this;
+                var serviceCollection = new ServiceCollection();
+                ConfigureServices(serviceCollection);
+
+                _serviceProvider = serviceCollection.BuildServiceProvider();
+
 
                 // Add event handlers
                 application.ApplicationClosing += OnApplicationClosing;
@@ -50,21 +60,11 @@ namespace RevitTemplate
                 // Create the ribbon panel
                 RibbonPanel panel = CreateRibbonPanel(application);
 
-                
+
                 // Add buttons to the ribbon panel
                 AddRibbonButtons(panel);
 
-                HttpClient = new HttpClient(new HttpClientHandler
-                {
-                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-                })
-                {
-                    BaseAddress = new Uri("https://localhost:6102/api/")
-                };
-                
-                // Configura automaticamente o token se existir um válido
-                ConfigureHttpClientWithToken();
-                
+
                 CiclopeParametersEventHandler = new AddCiclopeParametersEventHandler();
 
                 return Result.Succeeded;
@@ -74,9 +74,11 @@ namespace RevitTemplate
                 Logger.HandleError(ex);
                 return Result.Failed;
             }
+        }        private void ConfigureServices(IServiceCollection services)
+        {
+            // Use the centralized configuration
+            DependencyInjectionConfig.ConfigureServices(services);
         }
-
-
 
         /// <summary>
         /// Called when Revit shuts down.
@@ -87,8 +89,14 @@ namespace RevitTemplate
         {
             try
             {
+
                 // Clean up resources
                 _window = null;
+
+                if (_serviceProvider is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
 
                 return Result.Succeeded;
             }
@@ -98,15 +106,16 @@ namespace RevitTemplate
                 return Result.Failed;
             }
         }
-
-
-
-
+        /// <summary>
+        /// Shows the CICLOPE window using dependency injection.
+        /// </summary>
+        /// <param name="uiApplication">The Revit UI application.</param>
         public void ShowCiclopeWindow(UIApplication uiApplication)
         {
             try
             {
-                _window = new CiclopeWindow();
+                var tokenService = _serviceProvider.GetRequiredService<TokenService>();
+                _window = new CiclopeWindow(tokenService,_serviceProvider);
                 _window.Show();
             }
             catch (Exception ex)
@@ -120,7 +129,7 @@ namespace RevitTemplate
         {
             // Tab name
             string tabName = "Template";
-            
+
             // Try to create the ribbon tab
             try
             {
@@ -216,70 +225,9 @@ namespace RevitTemplate
         {
             // This method is called when Revit is closing
             // You can use it to clean up resources
-        }
-        
-        /// <summary>
+        }        /// <summary>
         /// Configura o HttpClient com o token JWT se disponível
         /// </summary>
-        public void ConfigureHttpClientWithToken()
-        {
-            try
-            {
-                string token = TokenService.GetCurrentToken();
-                if (!string.IsNullOrEmpty(token))
-                {
-                    SetAuthorizationToken(token);
-                    LogService.LogInfo("HttpClient configurado com token JWT existente");
-                }
-                else
-                {
-                    LogService.LogInfo("Nenhum token JWT válido encontrado para configurar o HttpClient");
-                }
-            }
-            catch (Exception ex)
-            {
-                LogService.LogError($"Erro ao configurar token no HttpClient: {ex.Message}");
-            }
-        }
         
-        /// <summary>
-        /// Define o token de autorização no HttpClient
-        /// </summary>
-        /// <param name="token">Token JWT para autorização</param>
-        public void SetAuthorizationToken(string token)
-        {
-            try
-            {
-                if (HttpClient != null && !string.IsNullOrEmpty(token))
-                {
-                    HttpClient.DefaultRequestHeaders.Remove("Authorization");
-                    HttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-                    LogService.LogInfo("Token de autorização configurado no HttpClient");
-                }
-            }
-            catch (Exception ex)
-            {
-                LogService.LogError($"Erro ao definir token de autorização: {ex.Message}");
-            }
-        }
-        
-        /// <summary>
-        /// Remove o token de autorização do HttpClient
-        /// </summary>
-        public void ClearAuthorizationToken()
-        {
-            try
-            {
-                if (HttpClient != null)
-                {
-                    HttpClient.DefaultRequestHeaders.Remove("Authorization");
-                    LogService.LogInfo("Token de autorização removido do HttpClient");
-                }
-            }
-            catch (Exception ex)
-            {
-                LogService.LogError($"Erro ao remover token de autorização: {ex.Message}");
-            }
-        }
     }
 }

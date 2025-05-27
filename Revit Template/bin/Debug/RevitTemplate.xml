@@ -188,6 +188,28 @@
             IDs dos elementos do Revit que devem ser atualizados
             </summary>
         </member>
+        <member name="T:RevitTemplate.Services.DependencyInjectionConfig">
+            <summary>
+            Configuration class for dependency injection services.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.Services.DependencyInjectionConfig.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures services for dependency injection.
+            </summary>
+            <param name="services">The service collection to configure.</param>
+        </member>
+        <member name="M:RevitTemplate.Services.HttpService.SetAuthorizationToken(System.String)">
+            <summary>
+            Define o token de autorização no HttpClient
+            </summary>
+            <param name="token">Token JWT para autorização</param>
+        </member>
+        <member name="M:RevitTemplate.Services.HttpService.ClearAuthorizationToken">
+            <summary>
+            Remove o token de autorização do HttpClient
+            </summary>
+        </member>
         <member name="T:RevitTemplate.Services.TokenService">
             <summary>
             Serviço para gerenciamento de tokens JWT com persistência segura em arquivo JSON
@@ -510,10 +532,16 @@
             CiclopeWindow
             </summary>
         </member>
-        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.#ctor">
+        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.#ctor(RevitTemplate.Services.TokenService,System.IServiceProvider)">
             <summary>
             Initializes a new instance of the <see cref="T:RevitTemplate.UI.Views.CiclopeWindow"/> class.
             </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.CiclopeWindow.NavigateToPage(System.Object)">
+            <summary>
+            Helper method to navigate to other pages.
+            </summary>
+            <param name="page">The page to navigate to.</param>
         </member>
         <member name="M:RevitTemplate.UI.Views.CiclopeWindow.InitializeComponent">
             <summary>
@@ -553,6 +581,19 @@
             LoginPage
             </summary>
         </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.LoginPage.#ctor(RevitTemplate.Services.HttpService,RevitTemplate.Services.TokenService,System.IServiceProvider)">
+            <summary>
+            Initializes a new instance of the LoginPage class.
+            </summary>
+            <param name="httpClient">The HTTP client for API calls.</param>
+            <param name="tokenService">The token service for managing authentication tokens.</param>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.LoginPage.OnLoginSubmit">
+            <summary>
+            Submits the login form and returns authentication token data.
+            </summary>
+            <returns>The authentication token data.</returns>
+        </member>
         <member name="M:RevitTemplate.UI.Views.Pages.LoginPage.InitializeComponent">
             <summary>
             InitializeComponent
@@ -565,6 +606,22 @@
             <summary>
             LogPage
             </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.Views.Pages.LogPage.Logs">
+            <summary>
+            Gets or sets the collection of logs.
+            </summary>
+        </member>
+        <member name="P:RevitTemplate.UI.Views.Pages.LogPage.LogCount">
+            <summary>
+            Gets or sets the log count.
+            </summary>
+        </member>
+        <member name="M:RevitTemplate.UI.Views.Pages.LogPage.#ctor(RevitTemplate.Services.TokenService,RevitTemplate.Services.HttpService,RevitTemplate.Services.HubService,System.IServiceProvider)">
+            <summary>
+            Initializes a new instance of the LogPage class.
+            </summary>
+            <param name="tokenService">The token service for managing authentication tokens.</param>
         </member>
         <member name="M:RevitTemplate.UI.Views.Pages.LogPage.InitializeComponent">
             <summary>
@@ -628,9 +685,10 @@
             Main application class that implements IExternalApplication.
             </summary>
         </member>
-        <member name="F:RevitTemplate.RevitApp.HttpClient">
+        <!-- Badly formed XML comment ignored for member "P:RevitTemplate.RevitApp.CiclopeParametersEventHandler" -->
+        <member name="P:RevitTemplate.RevitApp.ServiceProvider">
             <summary>
-            Gets the singleton instance of the application.
+            Gets the service provider for dependency injection.
             </summary>
         </member>
         <member name="M:RevitTemplate.RevitApp.OnStartup(Autodesk.Revit.UI.UIControlledApplication)">
@@ -647,21 +705,11 @@
             <param name="application">The UI controlled application.</param>
             <returns>The result of the shutdown.</returns>
         </member>
-        <member name="M:RevitTemplate.RevitApp.ConfigureHttpClientWithToken">
+        <member name="M:RevitTemplate.RevitApp.ShowCiclopeWindow(Autodesk.Revit.UI.UIApplication)">
             <summary>
-            Configura o HttpClient com o token JWT se disponível
+            Shows the CICLOPE window using dependency injection.
             </summary>
-        </member>
-        <member name="M:RevitTemplate.RevitApp.SetAuthorizationToken(System.String)">
-            <summary>
-            Define o token de autorização no HttpClient
-            </summary>
-            <param name="token">Token JWT para autorização</param>
-        </member>
-        <member name="M:RevitTemplate.RevitApp.ClearAuthorizationToken">
-            <summary>
-            Remove o token de autorização do HttpClient
-            </summary>
+            <param name="uiApplication">The Revit UI application.</param>
         </member>
         <member name="T:RevitTemplate.Properties.Resources">
             <summary>

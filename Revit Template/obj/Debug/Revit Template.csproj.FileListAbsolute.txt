@@ -1,40 +1,4 @@
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\License.txt
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.addin
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.xml
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.pdb
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNetCore.Http.Connections.Client.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNetCore.SignalR.Client.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNetCore.SignalR.Client.Core.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNetCore.SignalR.Common.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Bcl.TimeProvider.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.Features.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.Logging.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.Options.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.Primitives.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Newtonsoft.Json.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Buffers.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Diagnostics.DiagnosticSource.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.IO.Pipelines.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Memory.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Text.Encodings.Web.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Text.Json.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Threading.Channels.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.ValueTuple.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.pdb
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.Abstractions.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.Abstractions.pdb
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.AssemblyReference.cache
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\LoginPage.baml
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\LogPage.baml
@@ -50,6 +14,22 @@ C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit 
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.Properties.Resources.resources
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.GenerateResource.cache
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.CoreCompileInputs.cache
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.pdb
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\License.txt
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.addin
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.pdb
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Newtonsoft.Json.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.pdb
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.Abstractions.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.Abstractions.pdb
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\Revit Te.ABF3C82F.Up2Date
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.dll
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.pdb
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
+C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNet.SignalR.Client.pdb
