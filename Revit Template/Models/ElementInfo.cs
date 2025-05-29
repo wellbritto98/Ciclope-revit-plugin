@@ -34,9 +34,9 @@ namespace RevitTemplate.Models
         public string ElementId { get; set; }
 
         /// <summary>
-        /// Name of the element
+        /// Name of the family element
         /// </summary>
-        public string Name { get; set; }
+        public string FamilyName { get; set; }
 
         /// <summary>
         /// Category of the element
@@ -44,9 +44,9 @@ namespace RevitTemplate.Models
         public string Category { get; set; }
 
         /// <summary>
-        /// Type name of the element
+        /// Type name of the element (family instance)
         /// </summary>
-        public string Type { get; set; }        
+        public string FamilyType { get; set; }        
 
         /// <summary>
         /// Total area of the element(s) in square meters
@@ -64,16 +64,6 @@ namespace RevitTemplate.Models
         public double Perimeter { get; set; }
 
         /// <summary>
-        /// Quantity of instances of this element
-        /// </summary>
-        public int Quantity { get; set; }
-
-        /// <summary>
-        /// Lista de IDs de elementos do Revit neste grupo
-        /// </summary>
-        public List<int> RevitElementIds { get; set; } = new List<int>();        
-
-        /// <summary>
         /// Formatted area for display (includes units)
         /// </summary>
         public string AreaFormatted => Area > 0 ? $"{Math.Round(Area, 2)} m²" : "N/A";
@@ -85,103 +75,8 @@ namespace RevitTemplate.Models
         /// Formatted perimeter for display (includes units)
         /// </summary>
         public string PerimeterFormatted => Perimeter > 0 ? $"{Math.Round(Perimeter, 2)} m" : "N/A";
-
-        #region Parametros CICLOPE    
-        
-        private string _valorBase;
-        /// <summary>
-        /// Parâmetro Base CICLOPE
-        /// </summary>
-        public string ValorBase
-        {
-            get => _valorBase;
-            set
-            {
-                // Só disparar evento se realmente houve mudança e não estamos em modo de edição
-                if (_valorBase != value)
-                {
-                    _valorBase = value;
-                    OnPropertyChanged(nameof(ValorBase));
-                    
-                    // Disparar evento para atualização no Revit
-                    ParametroCiclopeAlterado?.Invoke(this, new ParametroCiclopeEventArgs("Base", value, RevitElementIds));
-                }
-            }
-        }
-
-        private string _valorEstado;
-        /// <summary>
-        /// Parâmetro Estado CICLOPE
-        /// </summary>
-        public string ValorEstado
-        {
-            get => _valorEstado;
-            set
-            {
-                if (_valorEstado != value)
-                {
-                    _valorEstado = value;
-                    OnPropertyChanged(nameof(ValorEstado));
-                    
-                    // Disparar evento para atualização no Revit
-                    ParametroCiclopeAlterado?.Invoke(this, new ParametroCiclopeEventArgs("Estado", value, RevitElementIds));
-                }
-            }
-        }
-
-        private string _valorCodigo;
-        /// <summary>
-        /// Parâmetro Código CICLOPE
-        /// </summary>
-        public string ValorCodigo
-        {
-            get => _valorCodigo;
-            set
-            {
-                if (_valorCodigo != value)
-                {
-                    _valorCodigo = value;
-                    OnPropertyChanged(nameof(ValorCodigo));
-                    
-                    // Disparar evento para atualização no Revit
-                    ParametroCiclopeAlterado?.Invoke(this, new ParametroCiclopeEventArgs("Codigo", value, RevitElementIds));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Evento disparado quando um parâmetro CICLOPE é alterado para atualizar todos os elementos do grupo
-        /// </summary>
-        public static event EventHandler<ParametroCiclopeEventArgs> ParametroCiclopeAlterado;
-
-        #endregion
+    
+       
     }
 
-    /// <summary>
-    /// Argumentos do evento quando um parâmetro CICLOPE é alterado
-    /// </summary>
-    public class ParametroCiclopeEventArgs : EventArgs
-    {
-        /// <summary>
-        /// Nome do parâmetro (Base, Estado, Codigo)
-        /// </summary>
-        public string NomeParametro { get; }
-
-        /// <summary>
-        /// Novo valor do parâmetro
-        /// </summary>
-        public string Valor { get; }
-
-        /// <summary>
-        /// IDs dos elementos do Revit que devem ser atualizados
-        /// </summary>
-        public List<int> ElementoIds { get; }
-
-        public ParametroCiclopeEventArgs(string nomeParametro, string valor, List<int> elementoIds)
-        {
-            NomeParametro = nomeParametro;
-            Valor = valor;
-            ElementoIds = new List<int>(elementoIds); // Cria uma cópia da lista para evitar alterações externas
-        }
-    }
 }

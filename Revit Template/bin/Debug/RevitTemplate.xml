@@ -81,9 +81,9 @@
             Unique identifier for grouping elements
             </summary>
         </member>
-        <member name="P:RevitTemplate.Models.ElementInfo.Name">
+        <member name="P:RevitTemplate.Models.ElementInfo.FamilyName">
             <summary>
-            Name of the element
+            Name of the family element
             </summary>
         </member>
         <member name="P:RevitTemplate.Models.ElementInfo.Category">
@@ -91,9 +91,9 @@
             Category of the element
             </summary>
         </member>
-        <member name="P:RevitTemplate.Models.ElementInfo.Type">
+        <member name="P:RevitTemplate.Models.ElementInfo.FamilyType">
             <summary>
-            Type name of the element
+            Type name of the element (family instance)
             </summary>
         </member>
         <member name="P:RevitTemplate.Models.ElementInfo.Area">
@@ -111,16 +111,6 @@
             Total perimeter of the element(s) in meters
             </summary>
         </member>
-        <member name="P:RevitTemplate.Models.ElementInfo.Quantity">
-            <summary>
-            Quantity of instances of this element
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.Models.ElementInfo.RevitElementIds">
-            <summary>
-            Lista de IDs de elementos do Revit neste grupo
-            </summary>
-        </member>
         <member name="P:RevitTemplate.Models.ElementInfo.AreaFormatted">
             <summary>
             Formatted area for display (includes units)
@@ -134,46 +124,6 @@
         <member name="P:RevitTemplate.Models.ElementInfo.PerimeterFormatted">
             <summary>
             Formatted perimeter for display (includes units)
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.Models.ElementInfo.ValorBase">
-            <summary>
-            Parâmetro Base CICLOPE
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.Models.ElementInfo.ValorEstado">
-            <summary>
-            Parâmetro Estado CICLOPE
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.Models.ElementInfo.ValorCodigo">
-            <summary>
-            Parâmetro Código CICLOPE
-            </summary>
-        </member>
-        <member name="E:RevitTemplate.Models.ElementInfo.ParametroCiclopeAlterado">
-            <summary>
-            Evento disparado quando um parâmetro CICLOPE é alterado para atualizar todos os elementos do grupo
-            </summary>
-        </member>
-        <member name="T:RevitTemplate.Models.ParametroCiclopeEventArgs">
-            <summary>
-            Argumentos do evento quando um parâmetro CICLOPE é alterado
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.Models.ParametroCiclopeEventArgs.NomeParametro">
-            <summary>
-            Nome do parâmetro (Base, Estado, Codigo)
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.Models.ParametroCiclopeEventArgs.Valor">
-            <summary>
-            Novo valor do parâmetro
-            </summary>
-        </member>
-        <member name="P:RevitTemplate.Models.ParametroCiclopeEventArgs.ElementoIds">
-            <summary>
-            IDs dos elementos do Revit que devem ser atualizados
             </summary>
         </member>
         <member name="T:RevitTemplate.Services.DependencyInjectionConfig">
@@ -198,13 +148,7 @@
             Remove o token de autorização do HttpClient
             </summary>
         </member>
-        <member name="M:RevitTemplate.Services.HubService.GetDocumentInfoAsync">
-            <summary>
-            Exemplo de como obter informações do documento Revit
-            </summary>
-            <returns>Informações do documento em formato JSON</returns>
-        </member>
-        <member name="M:RevitTemplate.Services.HubService.GetSpecificElementsAsync">
+        <member name="M:RevitTemplate.Services.HubService.Dispose">
             <summary>
             Exemplo de como obter apenas elementos específicos
             </summary>
@@ -537,21 +481,6 @@
             Gets grouped element information with calculated properties
             </summary>
             <returns>List of ElementInfo objects containing grouped element data</returns>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.CalculateTotalArea(System.Collections.Generic.IList{Autodesk.Revit.DB.Element})">
-            <summary>
-            Calculates the total area for a collection of elements in square meters
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.CalculateTotalVolume(System.Collections.Generic.IList{Autodesk.Revit.DB.Element})">
-            <summary>
-            Calculates the total volume for a collection of elements in cubic meters
-            </summary>
-        </member>
-        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.CalculateTotalPerimeter(System.Collections.Generic.IList{Autodesk.Revit.DB.Element})">
-            <summary>
-            Calculates the total perimeter for a collection of elements in meters
-            </summary>
         </member>
         <member name="M:RevitTemplate.Core.Services.RevitDocumentService.IsAnnotationOrViewElement(Autodesk.Revit.DB.Element)">
             <summary>

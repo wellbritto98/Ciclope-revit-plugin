@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace RevitTemplate.Core.Services
 {    /// <summary>
-    /// Implementation of the IRevitDocumentService interface.
-    /// </summary>
+     /// Implementation of the IRevitDocumentService interface.
+     /// </summary>
     public class RevitDocumentService : IRevitDocumentService
     {
         private readonly IUIApplicationProvider _uiApplicationProvider;
@@ -24,14 +24,14 @@ namespace RevitTemplate.Core.Services
         {
             _uiApplicationProvider = uiApplicationProvider ?? throw new ArgumentNullException(nameof(uiApplicationProvider));
         }        /// <summary>
-        /// Gets the current Revit document.
-        /// </summary>
-        /// <returns>The current Revit document.</returns>
+                 /// Gets the current Revit document.
+                 /// </summary>
+                 /// <returns>The current Revit document.</returns>
         public Document GetCurrentDocument()
         {
             if (_uiApplicationProvider.UIApplication == null)
                 throw new InvalidOperationException("UIApplication is not available. Make sure the UIApplicationProvider is properly initialized.");
-            
+
             return _uiApplicationProvider.UIApplication.ActiveUIDocument.Document;
         }
 
@@ -156,161 +156,55 @@ namespace RevitTemplate.Core.Services
             Logger.LogThreadInfo("Get Element Info Method");
             try
             {
-                // Get all elements in the document (filtering out types, views, annotations, etc.)
                 var allElements = new FilteredElementCollector(doc)
                     .WhereElementIsNotElementType()
                     .WhereElementIsViewIndependent()
-                    .Where(e => 
-                        e.Category != null && 
-                        e.Category.CategoryType == CategoryType.Model && 
+                    .Where(e =>
+                        e.Category != null &&
+                        e.Category.CategoryType == CategoryType.Model &&
                         e.Location != null &&
-                        // Excluir elementos que não são construção física
                         !IsAnnotationOrViewElement(e) &&
-                        // Verifica se o elemento tem um valor de categoria válido para construção
                         IsConstructionElement(e))
                     .ToList();
-               // Group by Category and Family/Type
-                var groupedElements = allElements
-                    .GroupBy(e => new
-                    {
-                        CategoryName = e.Category.Name,
-                        TypeName = e.GetTypeId() != null ? doc.GetElement(e.GetTypeId())?.Name ?? "Unknown" : "Unknown",
-                        FamilyName = (e is FamilyInstance) ? ((FamilyInstance)e).Symbol.FamilyName : e.Name
-                    })
-                    .Select(group => 
-                    {
-                        var elementInfo = new ElementInfo
-                        {
-                            ElementId = $"{group.Key.CategoryName}_{group.Key.FamilyName}_{group.Key.TypeName}",
-                            Category = group.Key.CategoryName,
-                            Name = group.Key.FamilyName,
-                            Type = group.Key.TypeName,
-                            Quantity = group.Count(),
-                            Area = CalculateTotalArea(group.ToList()),
-                            Volume = CalculateTotalVolume(group.ToList()),
-                            Perimeter = CalculateTotalPerimeter(group.ToList()),
-                            RevitElementIds = group.Select(e => e.Id.IntegerValue).ToList()
-                        };
-                        return elementInfo;
-                    })
-                    .OrderBy(e => e.Category)
-                    .ThenBy(e => e.Name)
-                    .ToList();
 
-                return groupedElements;
+                var elementInfoList = allElements.Select(e => new ElementInfo
+                {
+                    ElementId = e.Id.ToString(),
+                    FamilyName = e is FamilyInstance fi ? fi.Symbol.FamilyName : e.Name,
+                    Category = e.Category.Name,
+                    FamilyType = e.Name,
+                    Area = GetElementArea(e),
+                    Volume = GetElementVolume(e),
+                    Perimeter = GetElementPerimeter(e)
+                }).ToList();
+
+                return elementInfoList;
             }
             catch (Exception ex)
             {
                 Logger.HandleError(ex);
                 return new List<ElementInfo>();
             }
-
         }
-           
-               
-            /// <summary>
-        /// Calculates the total area for a collection of elements in square meters
-        /// </summary>
-        private double CalculateTotalArea(IList<Element> elements)
+
+
+
+        private double GetElementArea(Element element)
         {
-            double totalArea = 0;
-            Document doc = GetCurrentDocument();
-            
-            foreach (var element in elements)
-            {
-                try
-                {
-                    // Try to get area from element parameters
-                    Parameter areaParam = element.get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED);
-                    if (areaParam == null || areaParam.StorageType != StorageType.Double)
-                    {
-                        // Try alternative area parameters
-                        areaParam = element.LookupParameter("Area");
-                    }
-                    
-                    if (areaParam != null && areaParam.StorageType == StorageType.Double)
-                    {
-                        // Convert from square feet to square meters
-                        totalArea += UnitUtils.ConvertFromInternalUnits(areaParam.AsDouble(), UnitTypeId.SquareMeters);
-                    }
-                }
-                catch
-                {
-                    // Skip this element if area calculation fails
-                }
-            }
-            
-            return totalArea;
-        }        /// <summary>
-        /// Calculates the total volume for a collection of elements in cubic meters
-        /// </summary>
-        private double CalculateTotalVolume(IList<Element> elements)
+            Parameter areaParam = element.get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED);
+            return areaParam != null && areaParam.HasValue ? UnitUtils.ConvertFromInternalUnits(areaParam.AsDouble(), UnitTypeId.SquareMeters) : 0;
+        }
+
+        private double GetElementVolume(Element element)
         {
-            double totalVolume = 0;
-            Document doc = GetCurrentDocument();
-            
-            foreach (var element in elements)
-            {
-                try
-                {
-                    // Try to get volume from element parameters
-                    Parameter volumeParam = element.get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED);
-                    if (volumeParam == null || volumeParam.StorageType != StorageType.Double)
-                    {
-                        // Try alternative volume parameters
-                        volumeParam = element.LookupParameter("Volume");
-                    }
-                    
-                    if (volumeParam != null && volumeParam.StorageType == StorageType.Double)
-                    {
-                        // Convert from cubic feet to cubic meters
-                        totalVolume += UnitUtils.ConvertFromInternalUnits(volumeParam.AsDouble(), UnitTypeId.CubicMeters);
-                    }
-                }
-                catch
-                {
-                    // Skip this element if volume calculation fails
-                }
-            }
-            
-            return totalVolume;
-        }        /// <summary>
-        /// Calculates the total perimeter for a collection of elements in meters
-        /// </summary>
-        private double CalculateTotalPerimeter(IList<Element> elements)
+            Parameter volumeParam = element.get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED);
+            return volumeParam != null && volumeParam.HasValue ? UnitUtils.ConvertFromInternalUnits(volumeParam.AsDouble(), UnitTypeId.CubicMeters) : 0;
+        }
+
+        private double GetElementPerimeter(Element element)
         {
-            double totalPerimeter = 0;
-            Document doc = GetCurrentDocument();
-            
-            foreach (var element in elements)
-            {
-                try
-                {
-                    // Try to get perimeter from element parameters
-                    Parameter perimeterParam = element.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH);
-                    if (perimeterParam == null || perimeterParam.StorageType != StorageType.Double)
-                    {
-                        // Try alternative perimeter parameters
-                        perimeterParam = element.LookupParameter("Perimeter");
-                        if (perimeterParam == null || perimeterParam.StorageType != StorageType.Double)
-                        {
-                            perimeterParam = element.LookupParameter("Length");
-                        }
-                    }
-                    
-                    if (perimeterParam != null && perimeterParam.StorageType == StorageType.Double)
-                    {
-                        // Convert from feet to meters
-                        totalPerimeter += UnitUtils.ConvertFromInternalUnits(perimeterParam.AsDouble(), UnitTypeId.Meters);
-                    }
-                }
-                catch
-                {
-                    // Skip this element if perimeter calculation fails
-                }
-            }
-            
-            return totalPerimeter;
+            Parameter perimeterParam = element.LookupParameter("Perimeter");
+            return perimeterParam != null && perimeterParam.HasValue ? UnitUtils.ConvertFromInternalUnits(perimeterParam.AsDouble(), UnitTypeId.Meters) : 0;
         }
 
         /// <summary>
@@ -321,16 +215,16 @@ namespace RevitTemplate.Core.Services
         private bool IsAnnotationOrViewElement(Element element)
         {
             // Verificar elementos específicos que queremos excluir
-            if (element is View || 
+            if (element is View ||
                 element is Viewport ||
                 element is TextNote ||
                 element is Group ||
                 element is ViewSheet ||
                 element is SketchPlane ||
-                element is ReferencePlane || 
+                element is ReferencePlane ||
                 element is RoomTagType ||
                 element is Room ||
-                element is Grid || 
+                element is Grid ||
                 element is Level)
             {
                 return true;

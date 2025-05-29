@@ -10,6 +10,7 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using RevitTemplate.Core.Services;
 using Newtonsoft.Json;
+using RevitTemplate.Infrastructure;
 
 namespace RevitTemplate.Services
 {
@@ -19,12 +20,14 @@ namespace RevitTemplate.Services
         public IHubProxy HubProxy { get; private set; }
         private readonly WorkerServiceProxy _workerServiceProxy;
         private readonly IRevitDocumentService _revitDocumentService;
+        private readonly SelectElementsEventHandler _selectElementsEventHandler;
 
         // Construtor sem parâmetros para DI
-        public HubService(WorkerServiceProxy workerServiceProxy, IRevitDocumentService revitDocumentService )
+        public HubService(WorkerServiceProxy workerServiceProxy, IRevitDocumentService revitDocumentService, SelectElementsEventHandler selectElementsEventHandler)
         {
             _workerServiceProxy = workerServiceProxy;
             _revitDocumentService = revitDocumentService;
+            _selectElementsEventHandler = selectElementsEventHandler;
         }        // Método para inicializar a conexão
         public void Initialize(string hubUrl, string token)
         {
@@ -33,35 +36,97 @@ namespace RevitTemplate.Services
                 _workerServiceProxy.On<string>("RevitProjetoElementos", async (msg) =>
                 {
                     LogService.LogInfo($"Solicitação dos Elementos do projeto recebida.");
-                    
+
                     try
                     {
                         // Check if UIApplication is available
                         if (UIApplicationProvider.Instance.UIApplication == null)
                         {
                             LogService.LogError("UIApplication não está disponível. Certifique-se de que a aplicação Revit está ativa.");
-                            _workerServiceProxy.Invoke("RevitProjetoElementosResponse", 
+                            _workerServiceProxy.Invoke("RevitProjetoElementosResponse",
                                 JsonConvert.SerializeObject(new { error = "UIApplication não disponível" }));
                             return;
                         }
 
                         var elements = await _revitDocumentService.GetElementInfoAsync();
-                        
-                        // Serialize elements to JSON
+
+
+
                         string elementsJson = JsonConvert.SerializeObject(elements);
 
                         _workerServiceProxy.Invoke("RevitProjetoElementosResponse", elementsJson);
-                        
+
                         LogService.LogInfo($"Enviados {elements.Count} elementos para o SignalR hub.");
                     }
                     catch (Exception ex)
                     {
                         LogService.LogError($"Erro ao obter elementos do projeto: {ex.Message}");
-                        _workerServiceProxy.Invoke("RevitProjetoElementosResponse", 
+                        _workerServiceProxy.Invoke("RevitProjetoElementosResponse",
                             JsonConvert.SerializeObject(new { error = ex.Message }));
                     }
                 });
+
+                _workerServiceProxy.On<string>("RevitVisualizarElemento", async (msg) =>
+                {
+                    LogService.LogInfo($"Solicitação de Visualizar Elemento");
+
+                    try
+                    {
+                        // Check if UIApplication is available
+                        if (UIApplicationProvider.Instance.UIApplication == null)
+                        {
+                            LogService.LogError("UIApplication não está disponível. Certifique-se de que a aplicação Revit está ativa.");
+                            _workerServiceProxy.Invoke("RevitProjetoElementosResponse",
+                                JsonConvert.SerializeObject(new { error = "UIApplication não disponível" }));
+                            return;
+                        }                        // Convert string element ID to integer
+                                                 //deserializar msg em uma lista de strings
+
+                        if (string.IsNullOrWhiteSpace(msg))
+                        {
+                            LogService.LogError("ID do elemento não pode ser nulo ou vazio.");
+                            return;
+                        }
+
+                        List<string> strings = JsonConvert.DeserializeObject<List<string>>(msg);
+
+                        if (strings == null || strings.Count == 0)
+                        {
+                            LogService.LogError("Lista de IDs de elementos está vazia ou inválida.");
+                            return;
+                        }
+
+                        //converter cada string em int
+                        List<int> elementIds = new List<int>();
+
+                        foreach (var str in strings)
+                        {
+                            if (int.TryParse(str, out int elementId))
+                            {
+                                elementIds.Add(elementId);
+                            }
+                            else
+                            {
+                                LogService.LogError($"ID do elemento inválido: {str}");
+                                return;
+                            }
+                        }
+
+                        _selectElementsEventHandler.Raise(elementIds);
+
+                        LogService.LogInfo($"Elemento {msg} Selecionado ");
+                    }
+                    catch (Exception ex)
+                    {
+                        LogService.LogError($"Erro ao obter elementos do projeto: {ex.Message}");
+                        _workerServiceProxy.Invoke("RevitProjetoElementosResponse",
+                            JsonConvert.SerializeObject(new { error = ex.Message }));
+                    }
+                });
+
             }
+
+
             catch (Exception ex)
             {
                 LogService.LogError($"Erro ao criar conexão do hub: {ex.Message}");
@@ -105,84 +170,13 @@ namespace RevitTemplate.Services
 
         }
 
-        /// <summary>
-        /// Exemplo de como obter informações do documento Revit
-        /// </summary>
-        /// <returns>Informações do documento em formato JSON</returns>
-        public async Task<string> GetDocumentInfoAsync()
-        {
-            try
-            {
-                // Check if UIApplication is available
-                if (UIApplicationProvider.Instance.UIApplication == null)
-                {
-                    throw new InvalidOperationException("UIApplication não está disponível. Execute o comando a partir do Revit.");
-                }
 
-                // Get basic document info
-                var docInfo = _revitDocumentService.GetDocumentInfo();
-                
-                // Get elements info
-                var elements = await _revitDocumentService.GetElementInfoAsync();
-                
-                // Get family instances
-                var familyInstances = _revitDocumentService.GetAllFamilyInstances();
-                
-                // Get sheets
-                var sheets = await _revitDocumentService.GetSheetsAsync();
-                
-                // Get wall info
-                var wallInfo = await _revitDocumentService.GetWallInfoAsync();
-
-                var result = new
-                {
-                    DocumentInfo = docInfo,
-                    ElementsCount = elements.Count,
-                    Elements = elements.Take(5), // Apenas os primeiros 5 para exemplo
-                    FamilyInstancesCount = familyInstances.Count,
-                    SheetsCount = sheets.Count,
-                    WallInfo = wallInfo
-                };
-
-                return JsonConvert.SerializeObject(result, Formatting.Indented);
-            }
-            catch (Exception ex)
-            {
-                LogService.LogError($"Erro ao obter informações do documento: {ex.Message}");
-                throw;
-            }
-        }
 
         /// <summary>
         /// Exemplo de como obter apenas elementos específicos
         /// </summary>
         /// <returns>Lista de elementos específicos</returns>
-        public async Task<string> GetSpecificElementsAsync()
-        {
-            try
-            {
-                // Check if UIApplication is available
-                if (UIApplicationProvider.Instance.UIApplication == null)
-                {
-                    throw new InvalidOperationException("UIApplication não está disponível.");
-                }
 
-                var elements = await _revitDocumentService.GetElementInfoAsync();
-                
-                // Filtrar apenas elementos de parede (exemplo)
-                var wallElements = elements.Where(e => e.Category != null && 
-                    e.Category.ToLower().Contains("wall")).ToList();
-
-                LogService.LogInfo($"Encontrados {wallElements.Count} elementos de parede.");
-
-                return JsonConvert.SerializeObject(wallElements, Formatting.Indented);
-            }
-            catch (Exception ex)
-            {
-                LogService.LogError($"Erro ao obter elementos específicos: {ex.Message}");
-                throw;
-            }
-        }
 
         public void Dispose()
         {

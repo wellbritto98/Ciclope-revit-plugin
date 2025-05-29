@@ -62,6 +62,18 @@ namespace SignalRWorker
                 }));
             });
 
+            _hubConnection.On<string>("RevitVisualizarElemento", (msg) =>
+            {
+                Console.WriteLine(msg);
+                _streamOut.WriteLine(JsonSerializer.Serialize(new
+                {
+                    Method = "RevitVisualizarElemento",
+                    Args = new string[] { msg }
+                }));
+            });
+
+
+
 
             await _hubConnection.StartAsync();
 
