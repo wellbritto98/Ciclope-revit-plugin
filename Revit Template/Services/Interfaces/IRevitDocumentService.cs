@@ -52,5 +52,31 @@ namespace RevitTemplate.Core.Services
         /// </summary>
         /// <returns>List of ElementInfo objects containing grouped element data</returns>
         Task<List<ElementInfo>> GetElementInfoAsync();
+
+        /// <summary>
+        /// Gets filtered element information with calculated properties
+        /// </summary>
+        /// <param name="filter">Filter criteria to apply to elements</param>
+        /// <returns>List of ElementInfo objects containing filtered element data</returns>
+        Task<List<ElementInfo>> GetElementInfoAsync(FilterRevitElements filter);
+
+        /// <summary>
+        /// Gets all unique category names from construction elements in the document
+        /// </summary>
+        /// <returns>List of category names</returns>
+        Task<List<string>> GetCategoryNamesAsync();
+
+        /// <summary>
+        /// Gets all unique family names from construction elements in the document
+        /// </summary>
+        /// <returns>List of family names</returns>
+        Task<List<string>> GetFamilyNamesAsync();
+
+        /// <summary>
+        /// Gets all unique family names from construction elements in the document filtered by category
+        /// </summary>
+        /// <param name="categoryName">The category name to filter by</param>
+        /// <returns>List of family names for the specified category</returns>
+        Task<List<string>> GetFamilyNamesByCategoryAsync(string categoryName);
     }
 }

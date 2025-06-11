@@ -187,7 +187,88 @@ namespace RevitTemplate.Core.Services
             }
         }
 
+        /// <summary>
+        /// Gets filtered element information with calculated properties
+        /// </summary>
+        /// <param name="filter">Filter criteria to apply to elements</param>
+        /// <returns>List of ElementInfo objects containing filtered element data</returns>
+        public async Task<List<ElementInfo>> GetElementInfoAsync(FilterRevitElements filter)
+        {
+            Document doc = GetCurrentDocument();
+            Logger.LogThreadInfo("Get Filtered Element Info Method");
+            try
+            {
+                var allElements = new FilteredElementCollector(doc)
+                    .WhereElementIsNotElementType()
+                    .WhereElementIsViewIndependent()
+                    .Where(e =>
+                        e.Category != null &&
+                        e.Category.CategoryType == CategoryType.Model &&
+                        e.Location != null &&
+                        !IsAnnotationOrViewElement(e) &&
+                        IsConstructionElement(e))
+                    .ToList();
 
+                var elementInfoList = allElements.Select(e => new ElementInfo
+                {
+                    ElementId = e.Id.ToString(),
+                    FamilyName = e is FamilyInstance fi ? fi.Symbol.FamilyName : e.Name,
+                    Category = e.Category.Name,
+                    FamilyType = e.Name,
+                    Area = GetElementArea(e),
+                    Volume = GetElementVolume(e),
+                    Perimeter = GetElementPerimeter(e)
+                }).ToList();
+
+                // Apply filter if provided
+                if (filter != null && !string.IsNullOrWhiteSpace(filter.Campo) && !string.IsNullOrWhiteSpace(filter.Valor))
+                {
+                    elementInfoList = ApplyFilter(elementInfoList, filter);
+                    Logger.LogMessage($"Applied filter: {filter.Campo} = {filter.Valor}. Found {elementInfoList.Count} matching elements.");
+                }
+
+                return elementInfoList;
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleError(ex);
+                return new List<ElementInfo>();
+            }
+        }
+
+        /// <summary>
+        /// Applies filter criteria to the element list
+        /// </summary>
+        /// <param name="elements">List of elements to filter</param>
+        /// <param name="filter">Filter criteria</param>
+        /// <returns>Filtered list of elements</returns>
+        private List<ElementInfo> ApplyFilter(List<ElementInfo> elements, FilterRevitElements filter)
+        {
+            try
+            {
+                switch (filter.Campo.ToLowerInvariant())
+                {
+                    case "category":
+                        return elements.Where(e => 
+                            string.Equals(e.Category, filter.Valor, StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+                    
+                    case "familyname":
+                        return elements.Where(e => 
+                            string.Equals(e.FamilyName, filter.Valor, StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+                    
+                    default:
+                        Logger.LogMessage($"Campo de filtro não suportado: {filter.Campo}. Campos suportados: Category, FamilyName");
+                        return elements; // Return unfiltered list if field is not supported
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleError(ex);
+                return elements; // Return unfiltered list on error
+            }
+        }
 
         private double GetElementArea(Element element)
         {
@@ -307,10 +388,8 @@ namespace RevitTemplate.Core.Services
                     BuiltInCategory.OST_Casework,
                     BuiltInCategory.OST_SpecialityEquipment,
                     BuiltInCategory.OST_GenericModel
-                };
-
-                // Verificar se a categoria do elemento está na lista de categorias de construção
-                int catId = element.Category.Id.IntegerValue;
+                };                // Verificar se a categoria do elemento está na lista de categorias de construção
+                long catId = element.Category.Id.Value;
                 foreach (BuiltInCategory builtInCat in constructionCategories)
                 {
                     if (catId == (int)builtInCat)
@@ -335,6 +414,130 @@ namespace RevitTemplate.Core.Services
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Gets all unique category names from construction elements in the document
+        /// </summary>
+        /// <returns>List of category names</returns>
+        public async Task<List<string>> GetCategoryNamesAsync()
+        {
+            Document doc = GetCurrentDocument();
+            Logger.LogThreadInfo("Get Category Names Method");
+            try
+            {
+                return await Task.Run(() =>
+                {
+                    var allElements = new FilteredElementCollector(doc)
+                        .WhereElementIsNotElementType()
+                        .WhereElementIsViewIndependent()
+                        .Where(e =>
+                            e.Category != null &&
+                            e.Category.CategoryType == CategoryType.Model &&
+                            e.Location != null &&
+                            !IsAnnotationOrViewElement(e) &&
+                            IsConstructionElement(e))
+                        .ToList();
+
+                    var categoryNames = allElements
+                        .Select(e => e.Category.Name)
+                        .Distinct()
+                        .OrderBy(name => name)
+                        .ToList();
+
+                    Logger.LogMessage($"Found {categoryNames.Count} unique categories");
+                    return categoryNames;
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleError(ex);
+                return new List<string>();
+            }
+        }
+
+        /// <summary>
+        /// Gets all unique family names from construction elements in the document
+        /// </summary>
+        /// <returns>List of family names</returns>
+        public async Task<List<string>> GetFamilyNamesAsync()
+        {
+            Document doc = GetCurrentDocument();
+            Logger.LogThreadInfo("Get Family Names Method");
+            try
+            {
+                return await Task.Run(() =>
+                {
+                    var allElements = new FilteredElementCollector(doc)
+                        .WhereElementIsNotElementType()
+                        .WhereElementIsViewIndependent()
+                        .Where(e =>
+                            e.Category != null &&
+                            e.Category.CategoryType == CategoryType.Model &&
+                            e.Location != null &&
+                            !IsAnnotationOrViewElement(e) &&
+                            IsConstructionElement(e))
+                        .ToList();
+
+                    var familyNames = allElements
+                        .Select(e => e is FamilyInstance fi ? fi.Symbol.FamilyName : e.Name)
+                        .Where(name => !string.IsNullOrWhiteSpace(name))
+                        .Distinct()
+                        .OrderBy(name => name)
+                        .ToList();
+
+                    Logger.LogMessage($"Found {familyNames.Count} unique family names");
+                    return familyNames;
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleError(ex);
+                return new List<string>();
+            }
+        }
+
+        /// <summary>
+        /// Gets all unique family names from construction elements in the document filtered by category
+        /// </summary>
+        /// <param name="categoryName">The category name to filter by</param>
+        /// <returns>List of family names for the specified category</returns>
+        public async Task<List<string>> GetFamilyNamesByCategoryAsync(string categoryName)
+        {
+            Document doc = GetCurrentDocument();
+            Logger.LogThreadInfo("Get Family Names By Category Method");
+            try
+            {
+                return await Task.Run(() =>
+                {
+                    var allElements = new FilteredElementCollector(doc)
+                        .WhereElementIsNotElementType()
+                        .WhereElementIsViewIndependent()
+                        .Where(e =>
+                            e.Category != null &&
+                            e.Category.CategoryType == CategoryType.Model &&
+                            e.Location != null &&
+                            !IsAnnotationOrViewElement(e) &&
+                            IsConstructionElement(e) &&
+                            string.Equals(e.Category.Name, categoryName, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+
+                    var familyNames = allElements
+                        .Select(e => e is FamilyInstance fi ? fi.Symbol.FamilyName : e.Name)
+                        .Where(name => !string.IsNullOrWhiteSpace(name))
+                        .Distinct()
+                        .OrderBy(name => name)
+                        .ToList();
+
+                    Logger.LogMessage($"Found {familyNames.Count} unique family names for category '{categoryName}'");
+                    return familyNames;
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleError(ex);
+                return new List<string>();
+            }
         }
     }
 }

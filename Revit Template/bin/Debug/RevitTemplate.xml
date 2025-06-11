@@ -385,6 +385,32 @@
             </summary>
             <returns>List of ElementInfo objects containing grouped element data</returns>
         </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetElementInfoAsync(RevitTemplate.Models.FilterRevitElements)">
+            <summary>
+            Gets filtered element information with calculated properties
+            </summary>
+            <param name="filter">Filter criteria to apply to elements</param>
+            <returns>List of ElementInfo objects containing filtered element data</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetCategoryNamesAsync">
+            <summary>
+            Gets all unique category names from construction elements in the document
+            </summary>
+            <returns>List of category names</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetFamilyNamesAsync">
+            <summary>
+            Gets all unique family names from construction elements in the document
+            </summary>
+            <returns>List of family names</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.IRevitDocumentService.GetFamilyNamesByCategoryAsync(System.String)">
+            <summary>
+            Gets all unique family names from construction elements in the document filtered by category
+            </summary>
+            <param name="categoryName">The category name to filter by</param>
+            <returns>List of family names for the specified category</returns>
+        </member>
         <member name="T:RevitTemplate.Core.Services.IUIApplicationProvider">
             <summary>
             Interface for providing UIApplication context.
@@ -482,6 +508,21 @@
             </summary>
             <returns>List of ElementInfo objects containing grouped element data</returns>
         </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetElementInfoAsync(RevitTemplate.Models.FilterRevitElements)">
+            <summary>
+            Gets filtered element information with calculated properties
+            </summary>
+            <param name="filter">Filter criteria to apply to elements</param>
+            <returns>List of ElementInfo objects containing filtered element data</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.ApplyFilter(System.Collections.Generic.List{RevitTemplate.Models.ElementInfo},RevitTemplate.Models.FilterRevitElements)">
+            <summary>
+            Applies filter criteria to the element list
+            </summary>
+            <param name="elements">List of elements to filter</param>
+            <param name="filter">Filter criteria</param>
+            <returns>Filtered list of elements</returns>
+        </member>
         <member name="M:RevitTemplate.Core.Services.RevitDocumentService.IsAnnotationOrViewElement(Autodesk.Revit.DB.Element)">
             <summary>
             Verifica se o elemento é um elemento de anotação, visualização ou interface
@@ -495,6 +536,25 @@
             </summary>
             <param name="element">O elemento a ser verificado</param>
             <returns>True se o elemento for um elemento de construção</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetCategoryNamesAsync">
+            <summary>
+            Gets all unique category names from construction elements in the document
+            </summary>
+            <returns>List of category names</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetFamilyNamesAsync">
+            <summary>
+            Gets all unique family names from construction elements in the document
+            </summary>
+            <returns>List of family names</returns>
+        </member>
+        <member name="M:RevitTemplate.Core.Services.RevitDocumentService.GetFamilyNamesByCategoryAsync(System.String)">
+            <summary>
+            Gets all unique family names from construction elements in the document filtered by category
+            </summary>
+            <param name="categoryName">The category name to filter by</param>
+            <returns>List of family names for the specified category</returns>
         </member>
         <member name="T:RevitTemplate.UI.Views.CiclopeWindow">
             <summary>

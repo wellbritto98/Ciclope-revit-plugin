@@ -72,6 +72,25 @@ namespace SignalRWorker
                 }));
             });
 
+            _hubConnection.On<string>("GetCategoryNames", (msg) =>
+            {
+                Console.WriteLine(msg);
+                _streamOut.WriteLine(JsonSerializer.Serialize(new
+                {
+                    Method = "GetCategoryNames",
+                    Args = new string[] { msg }
+                }));
+            });
+
+            _hubConnection.On<string>("GetFamilyNames", (msg) =>
+            {
+                Console.WriteLine(msg);
+                _streamOut.WriteLine(JsonSerializer.Serialize(new
+                {
+                    Method = "GetFamilyNames",
+                    Args = new string[] { msg }
+                }));
+            });
 
 
 

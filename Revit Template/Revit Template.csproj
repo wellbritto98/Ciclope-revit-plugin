@@ -119,19 +119,19 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ResponseWorker.cs" />
     <Compile Include="Models\TokenData.cs" />
-    <Compile Include="Services\CompressionService.cs" />
-    <Compile Include="Services\DependencyInjectionConfig.cs" />
-    <Compile Include="Services\HttpService.cs" />    <Compile Include="Services\HubService.cs" />
-    <Compile Include="Services\TokenService.cs" />
-    <Compile Include="Services\FamilyParameterService.cs" />
-    <Compile Include="Services\IRevitDocumentService.cs" />
-    <Compile Include="Services\IUIApplicationProvider.cs" />
-    <Compile Include="Services\UIApplicationProvider.cs" />
-    <Compile Include="Services\LogService.cs" />
-    <Compile Include="Services\LoggingService.cs" />
-    <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Services\RevitDocumentService.cs" />
-    <Compile Include="Services\IServiceContainer.cs" />
+    <Compile Include="Models\FilterRevitElements.cs" />
+    <Compile Include="Services\Implementacoes\CompressionService.cs" />
+    <Compile Include="Services\Implementacoes\DependencyInjectionConfig.cs" />
+    <Compile Include="Services\Implementacoes\HttpService.cs" />
+    <Compile Include="Services\Implementacoes\HubService.cs" />
+    <Compile Include="Services\Implementacoes\TokenService.cs" />
+    <Compile Include="Services\Implementacoes\FamilyParameterService.cs" />
+    <Compile Include="Services\Interfaces\IRevitDocumentService.cs" />
+    <Compile Include="Services\Interfaces\IUIApplicationProvider.cs" />
+    <Compile Include="Services\Implementacoes\UIApplicationProvider.cs" />
+    <Compile Include="Services\Implementacoes\LogService.cs" />
+    <Compile Include="Services\Implementacoes\NavigationService.cs" />
+    <Compile Include="Services\Implementacoes\RevitDocumentService.cs" />
     <!-- UI -->
     <Compile Include="UI\Views\CiclopeWindow\CiclopeWindow.xaml.cs">
       <DependentUpon>CiclopeWindow.xaml</DependentUpon>
@@ -164,7 +164,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Services\WorkerServiceProxy.cs" />
+    <Compile Include="Services\Implementacoes\WorkerServiceProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt">
