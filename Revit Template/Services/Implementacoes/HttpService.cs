@@ -19,7 +19,7 @@ namespace RevitTemplate.Services
                     }
                 )
                 {
-                    BaseAddress = new Uri("https://localhost:6102/api/")
+                    BaseAddress = new Uri("https://developer-api-hml.olimpo.app.br/api/")
                 };
 
         private readonly IServiceProvider _serviceProvider;

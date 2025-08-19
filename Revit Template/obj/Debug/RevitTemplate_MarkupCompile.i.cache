@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\
 RevitTemplate
 none
 false
@@ -12,7 +12,7 @@ DEBUG;TRACE
 
 41077706413
 2960847164
-35-498790379
+361896519156
 31-723265591
 UI\Views\CiclopeWindow\CiclopeWindow.xaml;UI\Views\CiclopeWindow\Pages\OrcamentoPage.xaml;UI\Views\CiclopeWindow\Pages\LoginPage.xaml;UI\Views\CiclopeWindow\Pages\LogPage.xaml;
 

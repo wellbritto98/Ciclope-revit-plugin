@@ -37,7 +37,7 @@ namespace SignalRWorker
             _streamIn = new StreamReader(_pipeIn);
 
             _hubConnection = new HubConnectionBuilder()
-                .WithUrl(new Uri("https://localhost:6102/revitHub"), options =>
+                .WithUrl(new Uri("https://developer-hub-hml.olimpo.app.br/revitHub"), options =>
                 {
                     options.AccessTokenProvider = () => Task.FromResult(_token);
                     options.HttpMessageHandlerFactory = handler =>
@@ -100,34 +100,68 @@ namespace SignalRWorker
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                var message = _streamIn.ReadLine();
-
-                if (string.IsNullOrEmpty(message))
+                try
                 {
-                    continue;
+                    var message = _streamIn.ReadLine();
+
+                    if (string.IsNullOrEmpty(message))
+                    {
+                        continue;
+                    }
+
+                    var request = JsonSerializer.Deserialize<Request>(message, _jsonSerializerOptions);
+
+                    if (request == null)
+                    {
+                        continue;
+                    }
+
+                    var compressedMessage = CompressionService.Compress(request.Args[0]);
+
+                    await _hubConnection.InvokeAsync(request.Method, compressedMessage, stoppingToken);
                 }
-
-                var request = JsonSerializer.Deserialize<Request>(message, _jsonSerializerOptions);
-
-                if (request == null)
+                catch (Exception ex)
                 {
-                    continue;
+                    Console.WriteLine($"Erro no loop principal: {ex.Message}");
+                    await Task.Delay(1000, stoppingToken); // Aguarda 1 segundo antes de continuar
                 }
-
-                var compressedMessage = CompressionService.Compress(request.Args[0]);
-
-                await _hubConnection.InvokeAsync(request.Method, compressedMessage, stoppingToken);
             }
         }
 
         public override void Dispose()
         {
-            base.Dispose();
+            try
+            {
+                _hubConnection?.StopAsync().Wait(1000);
+                _hubConnection?.DisposeAsync().AsTask().Wait(1000);
+            }
+            catch { }
 
-            _pipeOut.Dispose();
-            _pipeIn.Dispose();
-            _streamOut.Dispose();
-            _streamIn.Dispose();
+            try
+            {
+                _streamOut?.Dispose();
+            }
+            catch { }
+
+            try
+            {
+                _streamIn?.Dispose();
+            }
+            catch { }
+
+            try
+            {
+                _pipeOut?.Dispose();
+            }
+            catch { }
+
+            try
+            {
+                _pipeIn?.Dispose();
+            }
+            catch { }
+
+            base.Dispose();
         }
     }
 }

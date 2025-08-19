@@ -33,3 +33,38 @@ C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit 
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.dll
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
 C:\Users\zearq\OneDrive\Documentos\projetos\Particular\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNet.SignalR.Client.pdb
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\License.txt
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.addin
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.xml
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\RevitTemplate.pdb
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Microsoft.AspNet.SignalR.Client.pdb
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Newtonsoft.Json.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.pdb
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.Abstractions.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\bin\Debug\Wpf.Ui.Abstractions.pdb
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.AssemblyReference.cache
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\LoginPage.baml
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\LogPage.baml
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\CiclopeWindow.g.cs
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\OrcamentoPage.g.cs
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\LoginPage.g.cs
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\LogPage.g.cs
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate_MarkupCompile.cache
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate_MarkupCompile.lref
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\CiclopeWindow.baml
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\UI\Views\CiclopeWindow\Pages\OrcamentoPage.baml
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.g.resources
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.Properties.Resources.resources
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.GenerateResource.cache
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\Revit Template.csproj.CoreCompileInputs.cache
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\Revit Te.ABF3C82F.Up2Date
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.dll
+C:\Users\zearq\Documents\revit-wpf-template\Revit Template\obj\Debug\RevitTemplate.pdb

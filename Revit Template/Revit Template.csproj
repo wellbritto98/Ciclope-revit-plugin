@@ -173,6 +173,12 @@
     <Resource Include="Resources\cloud-small.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\ciclope-circulo-16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\ciclope-circulo-32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\code-small2.png" />
     <Resource Include="Resources\revit-wire.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -263,10 +269,86 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- Configuração para copiar arquivos do SignalRWorker -->
   <PropertyGroup>
-    <PostBuildEvent>
-        Copy "$(TargetDir)*.dll" "$(AppData)\Autodesk\Revit\Addins\2024"
-        Copy "$(TargetDir)RevitTemplate.addin" "$(AppData)\Autodesk\Revit\Addins\2024"
-      </PostBuildEvent>
+    <SignalRWorkerProjectDir>$(SolutionDir)SignalRWorker\</SignalRWorkerProjectDir>
+    <SignalRWorkerOutputDir>$(SignalRWorkerProjectDir)bin\$(Configuration)\net8.0\</SignalRWorkerOutputDir>
+    <RevitAddinsDir>$(AppData)\Autodesk\Revit\Addins\2024\</RevitAddinsDir>
+    <ReleaseOutputDir>$(TargetDir)</ReleaseOutputDir>
   </PropertyGroup>
+  <!-- Target para garantir que o SignalRWorker seja compilado e publicado como self-contained -->
+  <Target Name="BuildSignalRWorker" BeforeTargets="Build">
+    <MSBuild Projects="$(SignalRWorkerProjectDir)SignalRWorker.csproj" Properties="Configuration=$(Configuration)" />
+    <Exec Command="dotnet publish &quot;$(SignalRWorkerProjectDir)SignalRWorker.csproj&quot; -c $(Configuration) -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -o &quot;$(SignalRWorkerOutputDir)published&quot;" />
+  </Target>
+  <!-- Target personalizado para cópia de arquivos -->
+  <Target Name="CopySignalRWorkerFiles" AfterTargets="Build">
+    <!-- Para Debug: copiar para pasta de addins do Revit -->
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+      <TargetCopyDir>$(RevitAddinsDir)</TargetCopyDir>
+      <WorkerCopyDir>$(RevitAddinsDir)Worker\</WorkerCopyDir>
+    </PropertyGroup>
+    <!-- Para Release: copiar para pasta bin/release -->
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+      <TargetCopyDir>$(ReleaseOutputDir)</TargetCopyDir>
+      <WorkerCopyDir>$(ReleaseOutputDir)Worker\</WorkerCopyDir>
+    </PropertyGroup>
+    <!-- Criar diretórios se não existirem -->
+    <MakeDir Directories="$(TargetCopyDir)" Condition="!Exists('$(TargetCopyDir)')" />
+    <MakeDir Directories="$(WorkerCopyDir)" Condition="!Exists('$(WorkerCopyDir)')" />
+    <!-- Copiar DLLs do projeto principal -->
+    <ItemGroup>
+      <MainProjectFiles Include="$(TargetDir)*.dll" />
+      <AddinFile Include="$(TargetDir)RevitTemplate.addin" />
+    </ItemGroup>
+    <Copy SourceFiles="@(MainProjectFiles)" DestinationFolder="$(TargetCopyDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(AddinFile)" DestinationFolder="$(TargetCopyDir)" SkipUnchangedFiles="true" />
+    <!-- Copiar arquivos específicos do SignalRWorker para pasta Worker -->
+    <ItemGroup Condition="Exists('$(SignalRWorkerOutputDir)published')">
+      <SignalRWorkerExes Include="$(SignalRWorkerOutputDir)published\SignalRWorker.exe" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SignalRWorkerExes)" DestinationFolder="$(WorkerCopyDir)" SkipUnchangedFiles="true" Condition="'@(SignalRWorkerExes)' != ''" />
+    <!-- Log das operações -->
+    <Message Text="Arquivos do projeto principal copiados para: $(TargetCopyDir)" Importance="high" />
+    <Message Text="Arquivos do SignalRWorker copiados para: $(WorkerCopyDir)" Importance="high" />
+  </Target>
+  <!-- Target para criar pasta de publish para instalador -->
+  <Target Name="CreatePublishPackage" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <PropertyGroup>
+      <PublishDir>$(ProjectDir)publish\</PublishDir>
+      <PublishAddinsDir>$(PublishDir)Addins\</PublishAddinsDir>
+      <PublishWorkerDir>$(PublishAddinsDir)Worker\</PublishWorkerDir>
+    </PropertyGroup>
+    <!-- Criar diretórios de publish -->
+    <MakeDir Directories="$(PublishDir)" Condition="!Exists('$(PublishDir)')" />
+    <MakeDir Directories="$(PublishAddinsDir)" Condition="!Exists('$(PublishAddinsDir)')" />
+    <MakeDir Directories="$(PublishWorkerDir)" Condition="!Exists('$(PublishWorkerDir)')" />
+    <!-- Copiar arquivos do projeto principal -->
+    <ItemGroup>
+      <PublishMainFiles Include="$(TargetDir)*.dll" />
+      <PublishAddinFile Include="$(TargetDir)RevitTemplate.addin" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PublishMainFiles)" DestinationFolder="$(PublishAddinsDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(PublishAddinFile)" DestinationFolder="$(PublishAddinsDir)" SkipUnchangedFiles="true" />
+    <!-- Copiar SignalRWorker -->
+    <ItemGroup Condition="Exists('$(SignalRWorkerOutputDir)published')">
+      <PublishWorkerExe Include="$(SignalRWorkerOutputDir)published\SignalRWorker.exe" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PublishWorkerExe)" DestinationFolder="$(PublishWorkerDir)" SkipUnchangedFiles="true" Condition="'@(PublishWorkerExe)' != ''" />
+    <!-- Copiar arquivos de documentação e licença -->
+    <ItemGroup>
+      <PublishDocs Include="$(ProjectDir)License.txt" />
+      <PublishReadme Include="$(ProjectDir)README.md" Condition="Exists('$(ProjectDir)README.md')" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PublishDocs)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(PublishReadme)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="true" />
+    <!-- Criar arquivo de instruções de instalação -->
+    <WriteLinesToFile File="$(PublishDir)INSTALACAO.txt" Lines="&#xA;=== INSTRUÇÕES DE INSTALAÇÃO ===&#xA;&#xA;1. Feche o Revit 2024&#xA;2. Copie todos os arquivos da pasta 'Addins' para:&#xA;   %APPDATA%\Autodesk\Revit\Addins\2024\&#xA;3. Reinicie o Revit 2024&#xA;4. O addin estará disponível na aba 'Template' do ribbon&#xA;&#xA;=== ESTRUTURA DE ARQUIVOS ===&#xA;Addins\&#xA;  |- *.dll (arquivos do addin principal)&#xA;  |- RevitTemplate.addin (arquivo de configuração)&#xA;  |- Worker\&#xA;      |- SignalRWorker.exe (executável do worker)&#xA;&#xA;=== OBSERVAÇÕES ===&#xA;- O SignalRWorker.exe é um executável auto-contido&#xA;- Não é necessário instalar .NET 8.0 separadamente&#xA;- Todos os arquivos devem ser mantidos na estrutura de pastas&#xA;" />
+    <!-- Log das operações -->
+    <Message Text="=== PACOTE DE PUBLISH CRIADO ===" Importance="high" />
+    <Message Text="Localização: $(PublishDir)" Importance="high" />
+    <Message Text="Arquivos do addin: $(PublishAddinsDir)" Importance="high" />
+    <Message Text="Worker: $(PublishWorkerDir)" Importance="high" />
+    <Message Text="Instruções: $(PublishDir)INSTALACAO.txt" Importance="high" />
+  </Target>
 </Project>

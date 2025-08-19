@@ -89,7 +89,7 @@ namespace RevitTemplate.UI.Views.Pages
             var token = tokenData?.Token;
 
             // Inicializar o HubService com os parâmetros necessários
-            _hubService.Initialize("https://localhost:6102/revitHub/", token);
+            _hubService.Initialize("https://developer-hub-hml.olimpo.app.br/revitHub/", token);
 
             //conectar no hub
             Task.WhenAll(_hubService.ConectarAoHubAsync(token));

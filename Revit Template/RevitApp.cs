@@ -89,10 +89,21 @@ namespace RevitTemplate
         {
             try
             {
-
                 // Clean up resources
                 _window = null;
 
+                // Dispose WorkerServiceProxy first
+                try
+                {
+                    var workerServiceProxy = _serviceProvider.GetService<WorkerServiceProxy>();
+                    workerServiceProxy?.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    Logger.HandleError(ex);
+                }
+
+                // Dispose service provider
                 if (_serviceProvider is IDisposable disposable)
                 {
                     disposable.Dispose();
@@ -130,7 +141,7 @@ namespace RevitTemplate
         private RibbonPanel CreateRibbonPanel(UIControlledApplication application)
         {
             // Tab name
-            string tabName = "Template";
+            string tabName = "OLIMPO";
 
             // Try to create the ribbon tab
             try
@@ -145,7 +156,7 @@ namespace RevitTemplate
             // Try to create the ribbon panel
             try
             {
-                application.CreateRibbonPanel(tabName, "Develop");
+                application.CreateRibbonPanel(tabName, "CICLOPE");
             }
             catch (Exception ex)
             {
@@ -155,7 +166,7 @@ namespace RevitTemplate
             // Find the panel
             RibbonPanel panel = null;
             List<RibbonPanel> panels = application.GetRibbonPanels(tabName);
-            foreach (RibbonPanel p in panels.Where(p => p.Name == "Develop"))
+            foreach (RibbonPanel p in panels.Where(p => p.Name == "CICLOPE"))
             {
                 panel = p;
                 break;
@@ -164,43 +175,17 @@ namespace RevitTemplate
             return panel;
         }
 
-        private void AddRibbonButtons(RibbonPanel panel)
+                private void AddRibbonButtons(RibbonPanel panel)
         {
             if (panel == null)
             {
                 return;
             }
 
-            // Get the assembly path
+                        // Get the assembly path
             string assemblyPath = Assembly.GetExecutingAssembly().Location;
 
-            // Add button for single-threaded mode
-            if (panel.AddItem(
-                new PushButtonData(
-                    "SingleThreadCommand",
-                    "WPF Template",
-                    assemblyPath,
-                    "RevitTemplate.Commands.SingleThreadCommand")) is PushButton button1)
-            {
-                button1.ToolTip = "Launch the application in a single thread.";
-                Uri uriImage = new Uri("pack://application:,,,/RevitTemplate;component/Resources/code-small.png");
-                BitmapImage largeImage = new BitmapImage(uriImage);
-                button1.LargeImage = largeImage;
-            }
-
-            // Add button for multi-threaded mode
-            if (panel.AddItem(
-                new PushButtonData(
-                    "MultiThreadCommand",
-                    "WPF Template\nMulti-Thread",
-                    assemblyPath,
-                    "RevitTemplate.Commands.MultiThreadCommand")) is PushButton button2)
-            {
-                button2.ToolTip = "Launch the application in a separate thread.";
-                Uri uriImage = new Uri("pack://application:,,,/RevitTemplate;component/Resources/code-small.png");
-                BitmapImage largeImage = new BitmapImage(uriImage);
-                button2.LargeImage = largeImage;
-            }
+      
 
             // Add button for CICLOPE mode
             if (panel.AddItem(
@@ -208,12 +193,35 @@ namespace RevitTemplate
                     "CiclopeCommand",
                     "CICLOPE",
                     assemblyPath,
-                    "RevitTemplate.Commands.CiclopeCommand")) is PushButton button3)
+                    "RevitTemplate.Commands.CiclopeCommand")) is PushButton button)
             {
-                button3.ToolTip = "Abre a janela CICLOPE com funcionalidades específicas.";
-                Uri uriImage = new Uri("pack://application:,,,/RevitTemplate;component/Resources/building.png");
-                BitmapImage largeImage = new BitmapImage(uriImage);
-                button3.LargeImage = largeImage;
+                button.ToolTip = "Abre a janela CICLOPE com funcionalidades específicas.";
+                
+                try
+                {
+                    // Load and configure the large image (32x32)
+                    Uri uriLargeImage = new Uri("pack://application:,,,/RevitTemplate;component/Resources/ciclope-circulo-32.png");
+                    BitmapImage largeImage = new BitmapImage(uriLargeImage);
+                    largeImage.CacheOption = BitmapCacheOption.OnLoad;
+                    largeImage.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                    
+                    // Load and configure the small image (16x16)
+                    Uri uriImage = new Uri("pack://application:,,,/RevitTemplate;component/Resources/ciclope-circulo-16.png");
+                    BitmapImage image = new BitmapImage(uriImage);
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+
+                    button.LargeImage = largeImage;
+                    button.Image = image;
+                    
+                    // Log success
+                    Logger.LogMessage("Ícones CICLOPE carregados com sucesso");
+                }
+                catch (Exception ex)
+                {
+                    Logger.HandleError(ex);
+                    Logger.LogMessage($"Erro ao carregar ícones: {ex.Message}");
+                }
             }
         }
 
@@ -226,7 +234,16 @@ namespace RevitTemplate
         private void OnApplicationClosing(object sender, ApplicationClosingEventArgs e)
         {
             // This method is called when Revit is closing
-            // You can use it to clean up resources
+            // Clean up WorkerServiceProxy
+            try
+            {
+                var workerServiceProxy = _serviceProvider?.GetService<WorkerServiceProxy>();
+                workerServiceProxy?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Logger.HandleError(ex);
+            }
         }        /// <summary>
         /// Configura o HttpClient com o token JWT se disponível
         /// </summary>

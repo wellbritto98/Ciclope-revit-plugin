@@ -1,0 +1,5 @@
+{
+    "SignalRWorkerPath": "",
+    "HubUrl": "https://developer-api-hml.olimpo.app.br/revitHub",
+    "LogLevel": "Info"
+}
